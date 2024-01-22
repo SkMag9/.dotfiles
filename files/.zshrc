@@ -27,5 +27,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 
-# Theme
+# Plugins
+
+# Theme 
 source ~/.zsh_theme

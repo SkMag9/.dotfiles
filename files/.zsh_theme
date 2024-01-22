@@ -70,16 +70,14 @@ fi
 PROMPT_PATH="$(zsh_prompt_transition ${OS_BG} ${PATH_BG})$(zsh_prompt_color_wrapper ${PATH_BG} ${PATH_FG} "${PATH_ICON} %~")"
 
 #### Git ####
-  zsh_prompt_git_status() {
-  autoload -Uz vcs_info
-  precmd() { vcs_info }
-  zstyle ':vcs_info:git:*' formats ' %b '
-  setopt PROMPT_SUBST
-
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+zstyle ':vcs_info:git:*' formats '%b'
+  
+zsh_prompt_git_status() {
   if [[ "${vcs_info_msg_0_}" != "" ]];then
-    echo "$(zsh_prompt_transition ${PATH_BG} ${GIT_BG_UPDATED})\
-$(zsh_prompt_color_wrapper ${GIT_BG_UPDATED} ${GIT_FG_UPDATED} "\ue702 \ue725${vcs_info_msg_0_}")\
-$(zsh_prompt_transition ${GIT_BG_UPDATED} default)"
+    echo "$(zsh_prompt_transition ${PATH_BG} ${GIT_BG_UPDATED})$(zsh_prompt_color_wrapper ${GIT_BG_UPDATED} ${GIT_FG_UPDATED} "\ue702 \ue725 ${vcs_info_msg_0_} ")$(zsh_prompt_transition ${GIT_BG_UPDATED} default)"
   else
     echo "$(zsh_prompt_transition ${PATH_BG} default)"
   fi
@@ -87,5 +85,8 @@ $(zsh_prompt_transition ${GIT_BG_UPDATED} default)"
 
 
 ###### RESULT ######
+setopt PROMPT_SUBST
 PROMPT='${PROMPT_OS}${PROMPT_PATH}$(zsh_prompt_git_status) '
 RPROMPT="$(echo "%K{default}%F{white}\ue0b2%f%k")$(zsh_prompt_color_wrapper white black "%*") "
+
+
