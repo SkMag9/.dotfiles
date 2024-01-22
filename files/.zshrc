@@ -10,17 +10,6 @@ SAVEHIST=5000
 # Line edit behaviour = vim
 bindkey -v
 
-# Oh My ZSH
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Plugins
-plugins=()
-source $ZSH/oh-my-zsh.sh
-
-# Path
-export PATH=$PATH:/usr/local/go/bin
-
 # ENV Vars
 #
 
@@ -38,4 +27,5 @@ alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 
-
+# Theme
+source ~/.zsh_theme
