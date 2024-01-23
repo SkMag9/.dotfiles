@@ -10,15 +10,28 @@ PROMPT_PADDING=" "
 #### Colors ####
 # The prompt consists of a few blocks that have a background (BG) and a font color (FG).
 # You can use hex colors for this but for compatibility and user preference reasons named colors should be used.
-# black, red, green, yellow, blue, magenta, cyan, white and default
+# black, red, green, yellow, blue, purple, cyan, white and default
 OS_BG="white"
 OS_FG="black"
+
 PATH_BG="blue"
 PATH_FG="white"
-GIT_BG_UPDATED="green"
-GIT_FG_UPDATED="black"
-GIT_BG_CHANGED="yello"
-GIT_FG_CHANGED="black"
+
+GIT_BG_UPDATED="magenta"
+GIT_FG_UPDATED="white"
+
+GIT_BG_CLEAN="green"
+GIT_FG_CLEAN="black"
+
+GIT_BG_MODIFIED="yellow"
+GIT_BG_MODIFIED="black"
+
+GIT_BG_UNTRACKED="cyan"
+GIT_BG_UNTRACKED="black"
+
+GIT_BG_CONFLICTED="red"
+GIT_BG_CONFLICTED="white"
+
 
 #### Icons ####
 # Uncomment one of the following lines for the icon you want for the OS.
@@ -49,7 +62,7 @@ OS_ICON="\uf306"
 zsh_prompt_color_wrapper() {
   # Usage: zsh_prompt_colors background_color font_color text
   # Output: Prompt config with $text surrounded with the backgroundcolor
-  echo "%K{$1}%F{$2} $3 %f%k"
+  echo "%K{$1}%F{$2} %B$3%b %f%k"
 }
 
 zsh_prompt_transition() {
@@ -79,18 +92,36 @@ get_path() {
 }
 
 #### Git ####
+### Base ###
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
-zstyle ':vcs_info:git:*' formats '%b'
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr '%c' 
+zstyle ':vcs_info:git:*' unsagedstr '%u'
+zstyle ':vcs_info:git:*' formats '%b | %c | %u'
 
-zsh_get_git_diff() {
-  
-}
-
-zsh_prompt_git_status() {
+### Prompt ###
+zsh_prompt_git_prompt() {
   if [[ "${vcs_info_msg_0_}" != "" ]];then
-    echo "$(zsh_prompt_transition ${PATH_BG} ${GIT_BG_UPDATED})$(zsh_prompt_color_wrapper ${GIT_BG_UPDATED} ${GIT_FG_UPDATED} " \ue725 ${vcs_info_msg_0_} ")$(zsh_prompt_transition ${GIT_BG_UPDATED} default)"
+    case 1 in
+      1)
+        GIT_STATUS_BG="${GIT_BG_UPDATED}"
+	GIT_STATUS_FG="${GIT_FG_UPDATED}"
+	;;
+      2)
+        GIT_STATUS_BG=""
+	GIT_STATUS_FG=""
+	;;
+      *)
+        GIT_STATUS_BG="white"
+	GIT_STATUS_FG="black"
+	;;
+    esac
+
+
+
+    echo "$(zsh_prompt_transition ${PATH_BG} ${GIT_STATUS_BG})$(zsh_prompt_color_wrapper ${GIT_STATUS_BG} ${GIT_STATUS_FG} " \ue725 ${vcs_info_msg_0_} ")$(zsh_prompt_transition ${GIT_STATUS_BG} default)"
   else
     echo "$(zsh_prompt_transition ${PATH_BG} default)"
   fi
@@ -99,7 +130,7 @@ zsh_prompt_git_status() {
 
 ###### RESULT ######
 setopt PROMPT_SUBST
-PROMPT='${PROMPT_OS}$(get_path)$(zsh_prompt_git_status) '
+PROMPT='${PROMPT_OS}$(get_path)$(zsh_prompt_git_prompt) '
 RPROMPT="$(echo "%K{default}%F{white}\ue0b2%f%k")$(zsh_prompt_color_wrapper white black "%*")"
 
 
