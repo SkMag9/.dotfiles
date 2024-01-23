@@ -24,7 +24,7 @@ GIT_FG_CHANGED="black"
 # Uncomment one of the following lines for the icon you want for the OS.
 
 # Tux
-OS_ICON="\uf17c" 
+# OS_ICON="\uf17c" 
 
 # Kali Linux
 # OS_ICON="\uf327"
@@ -33,7 +33,7 @@ OS_ICON="\uf17c"
 # OS_ICON="\uf303"
 
 # Debian
-# OS_ICON="\uf306"
+OS_ICON="\uf306"
 
 # Ubuntu
 # OS_ICON="\uf31b"
@@ -61,23 +61,36 @@ zsh_prompt_transition() {
 PROMPT_OS="$(zsh_prompt_color_wrapper ${OS_BG} ${OS_FG} ${OS_ICON})"
 
 #### PATH ####
-if [[ "$PWD" == "$HOME" ]];then
-  PATH_ICON="\uf015" # House Icon
-else
-  PATH_ICON="\uf07b" # Folder Icon
-fi
-
-PROMPT_PATH="$(zsh_prompt_transition ${OS_BG} ${PATH_BG})$(zsh_prompt_color_wrapper ${PATH_BG} ${PATH_FG} "${PATH_ICON} %~")"
+get_path() {
+  
+  case $PWD in
+    $HOME )
+      PATH_ICON="\uf015" # House Icon
+      ;;
+    "$HOME/projects"* ) 
+      PATH_ICON="\uf121" # Dev Icon
+      ;;
+    *)
+      PATH_ICON="\uf07b" # Folder Icon
+      ;;
+  esac
+  
+  echo "$(zsh_prompt_transition ${OS_BG} ${PATH_BG})$(zsh_prompt_color_wrapper ${PATH_BG} ${PATH_FG} "${PATH_ICON} %~")"
+}
 
 #### Git ####
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 zstyle ':vcs_info:git:*' formats '%b'
+
+zsh_get_git_diff() {
   
+}
+
 zsh_prompt_git_status() {
   if [[ "${vcs_info_msg_0_}" != "" ]];then
-    echo "$(zsh_prompt_transition ${PATH_BG} ${GIT_BG_UPDATED})$(zsh_prompt_color_wrapper ${GIT_BG_UPDATED} ${GIT_FG_UPDATED} "\ue702 \ue725 ${vcs_info_msg_0_} ")$(zsh_prompt_transition ${GIT_BG_UPDATED} default)"
+    echo "$(zsh_prompt_transition ${PATH_BG} ${GIT_BG_UPDATED})$(zsh_prompt_color_wrapper ${GIT_BG_UPDATED} ${GIT_FG_UPDATED} " \ue725 ${vcs_info_msg_0_} ")$(zsh_prompt_transition ${GIT_BG_UPDATED} default)"
   else
     echo "$(zsh_prompt_transition ${PATH_BG} default)"
   fi
@@ -86,7 +99,7 @@ zsh_prompt_git_status() {
 
 ###### RESULT ######
 setopt PROMPT_SUBST
-PROMPT='${PROMPT_OS}${PROMPT_PATH}$(zsh_prompt_git_status) '
-RPROMPT="$(echo "%K{default}%F{white}\ue0b2%f%k")$(zsh_prompt_color_wrapper white black "%*") "
+PROMPT='${PROMPT_OS}$(get_path)$(zsh_prompt_git_status) '
+RPROMPT="$(echo "%K{default}%F{white}\ue0b2%f%k")$(zsh_prompt_color_wrapper white black "%*")"
 
 
