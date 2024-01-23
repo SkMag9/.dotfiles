@@ -17,21 +17,11 @@ OS_FG="black"
 PATH_BG="blue"
 PATH_FG="white"
 
-GIT_BG_UPDATED="magenta"
-GIT_FG_UPDATED="white"
-
-GIT_BG_CLEAN="green"
-GIT_FG_CLEAN="black"
+GIT_BG_UNMODIFIED="green"
+GIT_FG_UNMODIFIED="black"
 
 GIT_BG_MODIFIED="yellow"
-GIT_BG_MODIFIED="black"
-
-GIT_BG_UNTRACKED="cyan"
-GIT_BG_UNTRACKED="black"
-
-GIT_BG_CONFLICTED="red"
-GIT_BG_CONFLICTED="white"
-
+GIT_FG_MODIFIED="black"
 
 #### Icons ####
 # Uncomment one of the following lines for the icon you want for the OS.
@@ -94,29 +84,27 @@ get_path() {
 #### Git ####
 ### Base ###
 autoload -Uz vcs_info
+
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
+
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr ' \uf067' 
+zstyle ':vcs_info:git:*' stagedstr ' \uf067'
 zstyle ':vcs_info:git:*' unstagedstr ' \uf128'
 zstyle ':vcs_info:git:*' formats '%b%c%u'
 
 ### Prompt ###
 zsh_prompt_git_prompt() {
   if [[ "${vcs_info_msg_0_}" != "" ]];then
-    case 1 in
-      1)
-        GIT_STATUS_BG="${GIT_BG_UPDATED}"
-	GIT_STATUS_FG="${GIT_FG_UPDATED}"
-	;;
-      2)
-        GIT_STATUS_BG=""
-	GIT_STATUS_FG=""
-	;;
+    case ${vcs_info_msg_0_} in
+      *"\uf067"*|*"\uf128"*)
+        GIT_STATUS_BG="${GIT_BG_MODIFIED}"
+	GIT_STATUS_FG="${GIT_FG_MODIFIED}"
+        ;;
       *)
-        GIT_STATUS_BG="white"
-	GIT_STATUS_FG="black"
+        GIT_STATUS_BG="${GIT_BG_UNMODIFIED}"
+	GIT_STATUS_FG="${GIT_FG_UNMODIFIED}"
 	;;
     esac
 
