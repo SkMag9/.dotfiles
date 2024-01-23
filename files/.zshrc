@@ -30,4 +30,4 @@ alias v="nvim"
 # Plugins
 
 # Theme 
-source ~/.zsh_theme
+source ~/.config/zsh/theme/theme.zsh
