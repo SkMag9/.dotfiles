@@ -96,10 +96,11 @@ get_path() {
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr '%c' 
-zstyle ':vcs_info:git:*' unsagedstr '%u'
-zstyle ':vcs_info:git:*' formats '%b | %c | %u'
+zstyle ':vcs_info:git:*' stagedstr ' \uf067' 
+zstyle ':vcs_info:git:*' unstagedstr ' \uf128'
+zstyle ':vcs_info:git:*' formats '%b%c%u'
 
 ### Prompt ###
 zsh_prompt_git_prompt() {
