@@ -6,7 +6,7 @@ then
   mv ~/.zshrc ~/.zshrc.bak
 fi
 
-ln -sf ~/dotfiles/files/.zshrc ~/.zshrc
+ln -sf ~/.dotfiles/files/.zshrc ~/.zshrc
 
 # ~/.config/zsh/themes/theme.zsh
 mkdir -p ~/.config/zsh/theme
@@ -16,4 +16,4 @@ then
   mv ~/.config/zsh/theme/theme.zsh ~/.config/zsh/theme/theme.zsh.bak
 fi
 
-ln -sf ~/dotfiles/files/.config/zsh/theme/theme.zsh ~/.config/zsh/theme/theme.zsh
+ln -sf ~/.dotfiles/files/.config/zsh/theme/theme.zsh ~/.config/zsh/theme/theme.zsh
