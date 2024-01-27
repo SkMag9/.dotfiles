@@ -28,17 +28,6 @@ function backup_config() {
   # rm -rf $
 }
 
-function usage_exit() {
-  echo "Usage: $0 [options]\n"
-  echo "\t-a\tInstall everything including configuration"
-  echo "\t-b\tLoad configuration of ZSH"
-  echo "\t-c\tLoad configuration of NeoVim"
-  echo "\t-d\tInstall Dive (Docker Image Inspection Tool)"
-  echo "\t-n\tInstall NeoVim"
-  echo "\t-u\tInstall utilities (python3, wget, jq, neofetch, tree)"
-  echo "\t-z\tInstall Zsh"
-}
-
 function write_log() {
   echo $(date) "$@" >> ~/skmag9_init.log
 }
@@ -89,17 +78,8 @@ function inst_zsh() {
 }
 
 ## Base Config Functions
-function conf_zsh() {
-  rm -rf ~/.zshrc
-  rm -rf ~/.histfile
-  rm -rf ~/.config/zsh
-
-  mkdir -p ~/.config/zsh/theme
-
-  ln -sf ~/.dotfiles/files/.zshrc ~/.zshrc
-  ln -sf ~/.dotfiles/files/.config/zsh/theme/theme.zsh ~/.config/zsh/theme/theme.zsh
-
-  csh -s $(which zsh)
+function conf_boot() {
+  sudo ln -sf ~/.dotfiles/files/wsl.conf /etc/wsl.conf  
 }
 
 function conf_nvim() {
@@ -111,6 +91,19 @@ function conf_nvim() {
   mkdir -p ~/.config
 
   ln -sf ~/.dotfiles/files/.config/nvim/ ~/.config/
+}
+
+function conf_zsh() {
+  rm -rf ~/.zshrc
+  rm -rf ~/.histfile
+  rm -rf ~/.config/zsh
+
+  mkdir -p ~/.config/zsh/theme
+
+  ln -sf ~/.dotfiles/files/.zshrc ~/.zshrc
+  ln -sf ~/.dotfiles/files/.config/zsh/theme/theme.zsh ~/.config/zsh/theme/theme.zsh
+
+  csh -s $(which zsh)
 }
 
 ## _all functions tools
@@ -131,11 +124,14 @@ function inst_conf_all() {
 }
 
 # Flags Handling
-while getopts 'acdilnptuz' OPTION; do
+while getopts 'abcdilnptuz' OPTION; do
   case "$OPTION" in 
     a)
       apt_update_upgrade
       inst_conf_all
+      ;;
+    b)
+      conf_boot
       ;;
     c)
       conf_all
