@@ -1,11 +1,19 @@
+# run ntp
+sudo ntpdate ch.pool.ntp.org >> ~/.ntp_history
+
 # Configs
 CASE_SENSITIVE="true"
 
 # History
-HISTFILE=~/.histfile
-HIST_STAMPS="yyy-mm-dd"
-HISTSIZE=1000
-SAVEHIST=5000
+export HISTFILE=~/.histfile
+export HIST_STAMP="yyyy-mm-dd"
+export HISTSIZE=1000
+export SAVEHIST=5000
+
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+
+alias history="history -i"
 
 # Line edit behaviour = vim
 bindkey -v
