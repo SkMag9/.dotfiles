@@ -1,16 +1,4 @@
 #!/bin/bash
-
-usage_exit() {
-  echo "Usage: $0 [options]\n"
-  echo "\t-a\tInstall everything including configuration"
-  echo "\t-b\tLoad configuration of ZSH"
-  echo "\t-c\tLoad configuration of NeoVim"
-  echo "\t-d\tInstall Dive (Docker Image Inspection Tool)"
-  echo "\t-n\tInstall NeoVim"
-  echo "\t-u\tInstall utilities (python3, wget, jq, neofetch, tree)"
-  echo "\t-z\tInstall Zsh"
-}
-
 # Functions
 ###############################
 # Common Patterns:
@@ -38,6 +26,17 @@ function backup_config() {
   mkdir -p $conf_backup_dir
   mv -v $path_to_dir $conf_backup_dir
   # rm -rf $
+}
+
+function usage_exit() {
+  echo "Usage: $0 [options]\n"
+  echo "\t-a\tInstall everything including configuration"
+  echo "\t-b\tLoad configuration of ZSH"
+  echo "\t-c\tLoad configuration of NeoVim"
+  echo "\t-d\tInstall Dive (Docker Image Inspection Tool)"
+  echo "\t-n\tInstall NeoVim"
+  echo "\t-u\tInstall utilities (python3, wget, jq, neofetch, tree)"
+  echo "\t-z\tInstall Zsh"
 }
 
 function write_log() {
@@ -76,7 +75,10 @@ function inst_utils() {
   
   # CLI Tools
   sudo apt install jq neofetch tree wget -y
-  
+ 
+  # NTP
+  sudo apt install ntpdate -y
+
   # Languages, Runtimes
   ## Python
   sudo apt install python3 -y
