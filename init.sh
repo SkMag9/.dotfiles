@@ -14,7 +14,7 @@ usage_exit() {
 #./scripts/install/neovim.install.sh
 #./scripts/install/zsh.install.sh
 #./scripts/install/utilities.install.sh
-./scripts/config/neovim.config.sh
+#./scripts/config/neovim.config.sh
 #./scripts/config/zsh.config.sh
 
 

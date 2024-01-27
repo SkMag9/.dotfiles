@@ -15,7 +15,7 @@ OS_BG="white"
 OS_FG="black"
 
 PATH_BG="blue"
-PATH_FG="white"
+PATH_FG="black"
 
 GIT_BG_UNMODIFIED="green"
 GIT_FG_UNMODIFIED="black"
