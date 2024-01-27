@@ -1,1 +1,3 @@
-ln -sf ~/.dotfiles/files/.config/nvim/ ~/.config/nvim/
+rm -rf ~/.local/share/nvim
+rm -rf ~/.config/nvim
+ln -sf ~/.dotfiles/files/.config/nvim/ ~/.config/
