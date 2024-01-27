@@ -13,3 +13,10 @@ cd .dotfiles
 # Restart Shell
 ```
 
+## Future Plans
+- [ ] Writing to a log with the status of the script
+- [ ] Make more interactive install with possibilities to chose specific things
+- [ ] Finish Config Backup Function
+- [ ] Remove need to include two parameters because of how paths are constructed
+- [ ] Make ``backup_config()`` check the amount of arguments as failsafe
+- [ ] Refactor ``backup_config()`` to accept multiple paths and backup all of them 
