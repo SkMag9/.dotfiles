@@ -1,11 +1,115 @@
 #!/bin/bash
+#################################################
+# Created by SkMag9
+# https://github.com/skmag9
+# Version 0.0.1
+#################################################
+
+###############################
+# Read arguments and set flags
+###############################
+ARGS=$(getopt --options abcinNtuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,inst-nvim,conf-nvim,inst-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
+
+eval set --"$ARGS"
+
+flag_update="false"
+flag_upgrade="false"
+
+flag_inst_nvim="false"
+flag_inst_nvim_ext="false"
+flag_inst_utils="false"
+flag_inst_zsh="false"
+
+flag_conf_boot="false"
+flag_conf_nvim="false"
+flag_conf_zsh="false"
+
+while true; do
+  case "$1" in
+    -a|--inst-conf-all)
+      flag_update="true"
+      flag_upgrade="true"
+      flag_inst_nvim="true"
+      flag_inst_nvim_ext="true"
+      flag_inst_utils="true"
+      flag_inst_zsh="true"
+      flag_conf_boot="true"
+      flag_conf_nvim="true"
+      flag_conf_zsh="true"
+      shift;;
+
+    -b|--conf-boot)
+      flag_conf_boot="true"
+      shift;;
+
+    -c|--conf-all)
+      flag_update="true"
+      flag_upgrade="true"
+      flag_inst_nvim_ext="true"
+      flag_conf_boot="true"
+      flag_conf_nvim="true"
+      flag_conf_zsh="true"
+      shift;;
+
+    -i|--inst-all)
+      flag_update="true"
+      flag_upgrade="true"
+      flag_inst_nvim="true"
+      flag_inst_utils="true"
+      flag_inst_zsh="true"
+      shift;;
+
+    -n|--inst-nvim)
+      flag_update="true"
+      flag_upgrade="true"
+      flag_inst_nvim="true"
+      shift;;
+      
+    -N|--conf-nvim)
+      flag_update="true"
+      flag_inst_nvim_ext="true"
+      flag_conf_nvim="true"
+      shift;;
+
+    -t|--inst-utils)
+      flag_update="true"
+      flag_upgrade="true"
+      flag_inst_utils="true"
+      shift;;
+
+    -u|--update)
+      flag_update="true"
+      shift;;
+
+    -U|--upgrade)
+      flag_update="true"
+      flag_upgrade="true"
+      shift;;
+
+    -z|--inst-zsh)
+      flag_update="true"
+      flag_upgrade="true"
+      flag_inst_zsh="true"
+      shift;;
+
+    -Z|--conf-zsh)
+      flag_conf_zsh="true"
+      shift;;
+
+    --)
+      break;;
+
+    *)
+      usage_exit
+      exit 1;;
+  esac
+done
+
+###############################
 # Functions
 ###############################
-# Common Patterns:
-# inst_<name>() = Functions used to install tools
-# conf_<name>() = Functions used to configure tools
-###############################
-## Util Functions
+
+# Utils
 function apt_update() {
   sudo apt update
 }
@@ -25,21 +129,22 @@ function backup_config() {
 
   mkdir -p $conf_backup_dir
   mv -v $path_to_dir $conf_backup_dir
-  # rm -rf $
+  # rm -rf 
 }
 
 function write_log() {
   echo $(date) "$@" >> ~/skmag9_init.log
 }
 
-## Base Install Functions
+
+# Install
 function inst_nvim() {
   # Dependencies
   sudo apt install clang cmake curl file gettext git ninja-build unzip -y
 
   # Clone Repository
-  git clone https://github.com/neovim/neovim ~/neovim 
-  
+  git clone https://github.com/neovim/neovim ~/neovim
+
   # Build NeoVim
   cd ~/neovim
   git checkout stable
@@ -61,10 +166,10 @@ function inst_nvim_ext() {
 function inst_utils() {
   # Man Pages
   sudo apt install manpages man-db -y
-  
+
   # CLI Tools
   sudo apt install jq neofetch tree wget -y
- 
+
   # NTP
   sudo apt install ntpdate -y
 
@@ -77,14 +182,14 @@ function inst_zsh() {
   sudo apt install zsh -y
 }
 
-## Base Config Functions
+# Config
 function conf_boot() {
-  sudo ln -sf ~/.dotfiles/files/wsl.conf /etc/wsl.conf  
+  sudo ln -sf ~/.dotfiles/files/wsl.conf /etc/wsl.conf
 }
 
 function conf_nvim() {
   inst_nvim_ext
-    
+
   rm -rf ~/.local/share/nvim
   rm -rf ~/.config/nvim
 
@@ -106,63 +211,47 @@ function conf_zsh() {
   csh -s $(which zsh)
 }
 
-## _all functions tools
-function inst_all() {
+###############################
+# Execute
+###############################
+
+if [[ "$flag_update" == true ]]; then
+  apt_update  
+fi
+
+if [[ "$flag_upgrade" == true ]]; then
+  apt_update_upgrade
+fi
+
+if [[ "$flag_inst_utils" == true ]]; then
   inst_utils
-  inst_zsh
+fi
+
+if [[ "$flag_inst_nvim" == true ]]; then
   inst_nvim
-}
+fi
 
-function conf_all() {
-  conf_zsh
+if [[ "$flag_inst_zsh" == true ]]; then
+  inst_zsh
+fi
+
+if [[ "$flag_inst_nvim_ext" == true ]]; then
+  inst_zsh_ext
+fi
+
+if [[ "$flag_conf_nvim" == true ]]; then
   conf_nvim
-}
+fi
 
-function inst_conf_all() {
-  inst_all
-  conf_all
-}
+if [[ "$flag_conf_zsh" == true ]]; then
+  conf_zsh
+fi
 
-# Flags Handling
-while getopts 'abcdilnptuz' OPTION; do
-  case "$OPTION" in 
-    a)
-      apt_update_upgrade
-      inst_conf_all
-      ;;
-    b)
-      conf_boot
-      ;;
-    c)
-      conf_all
-      ;;
-    d)
-      apt_update_upgrade
-      ;;
-    i)
-      apt_update_upgrade
-      inst_all
-      ;;
-    l)
-      conf_nvim
-      ;;
-    n)
-      apt_update_upgrade
-      inst_nvim
-      ;;
-    p)
-      apt_update_update
-      ;;
-    t)
-      conf_zsh
-      ;;
-    u)
-      apt_update_upgrade
-      inst_utils
-      ;;
-    z)
-      apt_update_upgrade
-      inst_zsh
-      ;;
-  esac
-done
+if [[ "$flag_conf_boot" == true ]]; then
+  conf_boot
+fi
+
+
+
+
+
