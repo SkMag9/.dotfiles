@@ -13,7 +13,13 @@ cd .dotfiles
 # Restart Shell
 ```
 
+## Current TODOs
+
+- [ ] Add Font Install to docker part in install script
+
+
 ## Future Plans
+
 - [ ] Writing to a log with the status of the script
 - [ ] Make more interactive install with possibilities to chose specific things
 - [ ] Finish Config Backup Function
