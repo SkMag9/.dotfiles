@@ -8,7 +8,7 @@
 ###############################
 # Read arguments and set flags
 ###############################
-ARGS=$(getopt --options abcinNtuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,inst-nvim,conf-nvim,inst-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
+ARGS=$(getopt --options abcdinNtuUzZ --long "inst-conf-all,conf-boot,conf-all,docker-zsh,inst-all,inst-nvim,conf-nvim,inst-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
 
 eval set --"$ARGS"
 
@@ -23,6 +23,7 @@ flag_inst_zsh="false"
 flag_conf_boot="false"
 flag_conf_nvim="false"
 flag_conf_zsh="false"
+flag_conf_zsh_docker="false"
 
 while true; do
   case "$1" in
@@ -48,6 +49,12 @@ while true; do
       flag_inst_nvim_ext="true"
       flag_conf_boot="true"
       flag_conf_nvim="true"
+      flag_conf_zsh="true"
+      shift;;
+
+    -d|--docker-zsh)
+      flag_update="true"
+      flag_conf_zsh_docker="true"
       flag_conf_zsh="true"
       shift;;
 
@@ -92,7 +99,7 @@ while true; do
       flag_inst_zsh="true"
       shift;;
 
-    -Z|--conf-zsh)
+    -Z|--conf-zsh) 
       flag_conf_zsh="true"
       shift;;
 
@@ -211,6 +218,14 @@ function conf_zsh() {
   chsh -s $(which zsh)
 }
 
+function conf_zsh_docker() {
+  # Configure Locales since Docker Image does not include them
+  sudo apt install locales -y
+  sudo printf '%s\n' LANG=en_GB.UTF-8 LC_ALL=C > /etc/default/locale
+  sudo echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen
+  sudo locale-gen
+}
+
 ###############################
 # Execute
 ###############################
@@ -241,6 +256,10 @@ fi
 
 if [[ "$flag_conf_nvim" == true ]]; then
   conf_nvim
+fi
+
+if [[ "$flag_conf_zsh_docker" == true ]]; then
+  conf_zsh_docker
 fi
 
 if [[ "$flag_conf_zsh" == true ]]; then
