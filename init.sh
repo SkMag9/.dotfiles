@@ -208,7 +208,7 @@ function conf_zsh() {
   ln -sf ~/.dotfiles/files/.zshrc ~/.zshrc
   ln -sf ~/.dotfiles/files/.config/zsh/theme/theme.zsh ~/.config/zsh/theme/theme.zsh
 
-  csh -s $(which zsh)
+  chsh -s $(which zsh)
 }
 
 ###############################
