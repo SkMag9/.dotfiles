@@ -17,6 +17,8 @@ cd .dotfiles
 
 - [ ] Add Font Install to docker part in install script
 - [ ] Add Install Dependencies to successfully install LSPs
+- [ ] Add NeoTree Toggle map to show buffers
+- [ ] Add Maps to operate buffers (open, close, etc.)
 
 ## Future Plans
 
