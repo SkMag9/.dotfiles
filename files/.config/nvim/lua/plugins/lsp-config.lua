@@ -39,8 +39,21 @@ return {
       local lspconfig = require("lspconfig")
 
       -- Language Specific Setup
+      --- Bash
+      lspconfig.bashls.setup({})
+
+      --- Go
+      lspconfig.gopls.setup({})
+
       --- Lua
       lspconfig.lua_ls.setup({})
+
+      --- TypeScript
+      lspconfig.tsserver.setup({})
+
+
+
+
 
       -- Keymaps
       --- On Startup
@@ -64,7 +77,7 @@ return {
           vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
           vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
           vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-          
+
         end,
       })
 
