@@ -173,6 +173,7 @@ function inst_nvim_ext() {
   cd ~ 
   wget https://go.dev/dl/go1.21.6.linux-amd64.tar.gz
   sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.6.linux-amd64.tar.gz
+  rm -rf ~/go1.21.6.linux-amd64.tar.gz
 }
 
 function inst_utils() {
