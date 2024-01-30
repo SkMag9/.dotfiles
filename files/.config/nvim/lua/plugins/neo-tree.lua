@@ -7,6 +7,7 @@ return {
     "MunifTanjim/nui.nvim",
   },
   config = function ()
+    -- File Tree
     vim.keymap.set(
       "n",
       "<C-n>",
@@ -19,6 +20,16 @@ return {
       ":Neotree focus filesystem reveal left<CR>",
       {}
     )
+
+    -- Buffers
+    vim.keymap.set(
+      "n",
+      "<C-b>",
+      ":Neotree toggle buffers reveal left <CR>",
+      {}
+    )
+
+    -- Git
     vim.keymap.set(
       "n",
       "<leader>gs",
@@ -70,9 +81,8 @@ return {
               show_path = "relative"
             }
           },
-          
         },
-      },
+      }, 
     })
   end,
 }
