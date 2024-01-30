@@ -10,7 +10,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "clangd", 
+          "clangd",
           "lua_ls",
           "vimls",
           "bashls",
@@ -19,7 +19,7 @@ return {
           "gopls",
           "html",
           "tsserver",
-          "jq",
+          "jqlsp",
           "pylsp",
           "sqlls",
           "terraformls",
@@ -27,7 +27,7 @@ return {
           "taplo",
           "vuels",
           "lemminx",
-          "yamllsl",
+          "yamlls",
         },
       })
     end,

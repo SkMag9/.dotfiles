@@ -22,7 +22,7 @@ alias history="history -i"
 bindkey -v
 
 # ENV Vars
-#
+export PATH=$PATH:/usr/local/go/bin
 
 # Aliases
 alias la="ls -alh"

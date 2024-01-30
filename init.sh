@@ -167,6 +167,12 @@ function inst_nvim_ext() {
   # Only being called from conf_nvim at the moment, so apt update is needed
   apt_update_upgrade
   sudo apt install npm ripgrep gcc -y
+
+
+  # Install golang
+  cd ~ 
+  wget https://go.dev/dl/go1.21.6.linux-amd64.tar.gz
+  sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.6.linux-amd64.tar.gz
 }
 
 function inst_utils() {
@@ -181,7 +187,7 @@ function inst_utils() {
 
   # Languages, Runtimes
   ## Python
-  sudo apt install python3 -y
+  sudo apt install python3 python3-venv -y
 }
 
 function inst_zsh() {
@@ -256,7 +262,7 @@ if [[ "$flag_inst_zsh" == true ]]; then
 fi
 
 if [[ "$flag_inst_nvim_ext" == true ]]; then
-  inst_zsh_ext
+  inst_nvim_ext
 fi
 
 if [[ "$flag_conf_nvim" == true ]]; then
