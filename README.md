@@ -16,7 +16,7 @@ cd .dotfiles
 ## Current TODOs
 
 - [ ] Add Font Install to docker part in install script
-
+- [ ] Add Install Dependencies to successfully install LSPs
 
 ## Future Plans
 

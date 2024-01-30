@@ -166,7 +166,7 @@ function inst_nvim() {
 function inst_nvim_ext() {
   # Only being called from conf_nvim at the moment, so apt update is needed
   apt_update_upgrade
-  sudo apt install ripgrep gcc -y
+  sudo apt install npm ripgrep gcc -y
 }
 
 function inst_utils() {
@@ -174,7 +174,7 @@ function inst_utils() {
   sudo apt install manpages man-db -y
 
   # CLI Tools
-  sudo apt install jq neofetch tree wget -y
+  sudo apt install curl git gzip jq neofetch tar tree unzip wget -y
 
   # NTP
   sudo apt install ntpdate -y
