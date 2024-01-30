@@ -1,6 +1,6 @@
 # dotfiles
 
-Dotfile Setup for Debian.
+Dotfile Setup for Debian in WSL.
 
 ## Setup
 
