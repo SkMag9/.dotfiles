@@ -174,6 +174,13 @@ function inst_nvim_ext() {
   wget https://go.dev/dl/go1.21.6.linux-amd64.tar.gz
   sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.6.linux-amd64.tar.gz
   rm -rf ~/go1.21.6.linux-amd64.tar.gz
+
+  
+
+  # Install needed Packages for Formatters, Linters, DAPs and LSPs
+  go install mvdan.cc/gofumpt@latest
+  go install github.com/segmentio/golines@latest
+  go install -v github.com/incu6us/goimports-reviser/v3@latest
 }
 
 function inst_utils() {
@@ -266,12 +273,12 @@ if [[ "$flag_inst_nvim_ext" == true ]]; then
   inst_nvim_ext
 fi
 
-if [[ "$flag_conf_nvim" == true ]]; then
-  conf_nvim
-fi
-
 if [[ "$flag_conf_zsh" == true ]]; then
   conf_zsh
+fi
+
+if [[ "$flag_conf_nvim" == true ]]; then
+  conf_nvim
 fi
 
 if [[ "$flag_conf_boot" == true ]]; then
