@@ -6,7 +6,11 @@ return {
 		require("catppuccin").setup({
 			flavour = "mocha",
 			no_italic = true,
-			integrations = {
+			styles = {
+        comments = {},
+        conditionals = {},
+      },
+      integrations = {
 				cmp = true,
 				gitsigns = true,
 				nvimtree = true,
