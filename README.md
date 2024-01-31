@@ -4,9 +4,25 @@ Dotfile Setup for Debian in WSL.
 
 ## Setup
 
+Update APT.
+
 ```bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install git
+```
+
+Switch to ``root`` and install nodejs.
+
+```bash
+sudo su -
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&\
+apt-get install -y nodejs
+exit
+```
+
+Switch back to user and run install script.
+
+```bash
 git clone https://github.com/skmag9/.dotfiles ~/.dotfiles
 cd .dotfiles
 ./init.sh
