@@ -10,31 +10,31 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "clangd",
-          "lua_ls",
-          "vimls",
-          "bashls",
-          "cssls",
-          "dockerls",
+          -- Only LSPs in the list:
+          -- https://mason-registry.dev/registry
+          "ansible-language-server",
+          "bash-language-server",
+          "css-lsp",
+          -- "docker-compose-language-service",
+          "docker-language-server",
           "gopls",
-          "html",
-          "tsserver",
-          --"jqlsp",
-          "pylsp",
+          "helm-ls",
+          "html-lsp",
+          -- "htmx-lsp",
+          "lua-language-server",
+          "python-lsp-server",
           "sqlls",
           "terraformls",
-          "tflint",
-          "taplo",
-          "vuels",
-          "lemminx",
-          --"yamlls",
+          -- "tsserver", -- Typescript
+          -- "ventur-vls", -- Vue
+          "yaml-language-server",
         },
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
-    config = function ()
+    config = function()
       -- Global Language Server Setup
       local lspconfig = require("lspconfig")
 
@@ -77,10 +77,8 @@ return {
           vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
           vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
           vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-
         end,
       })
-
     end
   }
 }
