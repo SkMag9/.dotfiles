@@ -1,10 +1,13 @@
 return {
+  -- Mason
   {
     "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
     end,
   },
+
+  -- Mason <-> lspconfig
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
@@ -12,26 +15,28 @@ return {
         ensure_installed = {
           -- Only LSPs in the list:
           -- https://mason-registry.dev/registry
-          "ansible-language-server",
-          "bash-language-server",
-          "css-lsp",
+          "ansiblels",
+          "bashls",
+          "cssls",
           -- "docker-compose-language-service",
-          "docker-language-server",
+          "dockerls",
           "gopls",
-          "helm-ls",
-          "html-lsp",
+          "helm_ls",
+          "html",
           -- "htmx-lsp",
-          "lua-language-server",
-          "python-lsp-server",
+          "lua_ls",
+          "pylsp",
           "sqlls",
           "terraformls",
           -- "tsserver", -- Typescript
-          -- "ventur-vls", -- Vue
-          "yaml-language-server",
+          -- "vue-language-server", -- Vue
+          "yamlls",
         },
       })
     end,
   },
+
+  -- lspconfig
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -50,10 +55,6 @@ return {
 
       --- TypeScript
       lspconfig.tsserver.setup({})
-
-
-
-
 
       -- Keymaps
       --- On Startup
