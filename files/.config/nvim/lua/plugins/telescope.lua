@@ -1,5 +1,6 @@
 return {
-	{
+	-- Telescope
+  {
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.5",
 		dependencies = {
@@ -18,6 +19,8 @@ return {
 			})
 		end,
 	},
+
+  -- Telescope UI
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
 		config = function()
