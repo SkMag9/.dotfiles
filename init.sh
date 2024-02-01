@@ -23,7 +23,6 @@ flag_inst_zsh="false"
 flag_conf_boot="false"
 flag_conf_nvim="false"
 flag_conf_zsh="false"
-# flag_conf_zsh_docker="false"
 
 while true; do
   case "$1" in

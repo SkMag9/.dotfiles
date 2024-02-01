@@ -7,6 +7,10 @@ return {
 
 			null_ls.setup({
 				sources = {
+          -- Bash
+          null_ls.builtins.diagnostics.shellcheck,
+          null_ls.builtins.code_actions.shellcheck,
+
 					-- Go
 					null_ls.builtins.formatting.gofumpt,
 					null_ls.builtins.formatting.goimports_reviser,
@@ -42,7 +46,10 @@ return {
 		config = function()
 			require("mason-null-ls").setup({
 				ensure_installed = {
-					-- Lua
+					-- Bash 
+          "shellcheck",
+
+          -- Lua
 					"stylua",
 
 					-- Python
