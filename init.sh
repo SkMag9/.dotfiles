@@ -23,7 +23,7 @@ flag_inst_zsh="false"
 flag_conf_boot="false"
 flag_conf_nvim="false"
 flag_conf_zsh="false"
-flag_conf_zsh_docker="false"
+# flag_conf_zsh_docker="false"
 
 while true; do
   case "$1" in
@@ -70,7 +70,7 @@ while true; do
       flag_upgrade="true"
       flag_inst_nvim="true"
       shift;;
-      
+
     -N|--conf-nvim)
       flag_update="true"
       flag_inst_nvim_ext="true"
@@ -98,7 +98,7 @@ while true; do
       flag_inst_zsh="true"
       shift;;
 
-    -Z|--conf-zsh) 
+    -Z|--conf-zsh)
       flag_conf_zsh="true"
       shift;;
 
@@ -131,15 +131,17 @@ function backup_config() {
   # Clean Up Existing Config
   local path_to_dir="$1"
   local backup_dir_name="$2"
-  local conf_backup_dir="~/.conf_backup_$(date +"%Y%m%d%H%M%S")/$backup_dir_name"
+  local conf_backup_dir
 
-  mkdir -p $conf_backup_dir
-  mv -v $path_to_dir $conf_backup_dir
-  # rm -rf 
+  conf_backup_dir="$HOME/.conf_backup_$(date +'%Y%m%d%H%M%S')/$backup_dir_name"
+
+  mkdir -p "$conf_backup_dir"
+  mv -v "$path_to_dir" "$conf_backup_dir"
+  # rm -rf
 }
 
 function write_log() {
-  echo $(date) "$@" >> ~/skmag9_init.log
+  echo "$(date) $*" >> "$HOME/skmag9_init.log"
 }
 
 
@@ -149,10 +151,10 @@ function inst_nvim() {
   sudo apt install clang cmake curl file gettext git ninja-build unzip -y
 
   # Clone Repository
-  git clone https://github.com/neovim/neovim ~/neovim
+  git clone https://github.com/neovim/neovim "$HOME/neovim"
 
   # Build NeoVim
-  cd ~/neovim
+  cd "$HOME/neovim" || exit
   git checkout stable
   make CMAKE_BUILD_TYPE=RelWithDebInfo
 
@@ -160,7 +162,7 @@ function inst_nvim() {
   cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 
   # Cleanup
-  cd ~ && rm -rf ~/neovim
+  cd "$HOME" && rm -rf "$HOME/neovim"
 }
 
 function inst_nvim_ext() {
@@ -170,12 +172,12 @@ function inst_nvim_ext() {
 
 
   # Install golang
-  cd ~ 
+  cd "$HOME" || exit
   wget https://go.dev/dl/go1.21.6.linux-amd64.tar.gz
   sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.6.linux-amd64.tar.gz
-  rm -rf ~/go1.21.6.linux-amd64.tar.gz
+  rm -rf "$HOME/go1.21.6.linux-amd64.tar.gz"
 
-  
+
 
   # Install needed Packages for Formatters, Linters, DAPs and LSPs
   go install mvdan.cc/gofumpt@latest
@@ -204,39 +206,39 @@ function inst_zsh() {
 
 # Config
 function conf_boot() {
-  sudo ln -sf ~/.dotfiles/files/wsl.conf /etc/wsl.conf
+  sudo ln -sf "$HOME/.dotfiles/files/wsl.conf /etc/wsl.conf"
 }
 
 function conf_locale() {
   # Configure Locales since Docker Image does not include them
   sudo apt install locales -y
-  sudo printf '%s\n' LANG=en_GB.UTF-8 LC_ALL=C > /etc/default/locale
-  sudo echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen
+  printf '%s\n' LANG=en_GB.UTF-8 LC_ALL=C | sudo tee /etc/default/locale > /dev/null
+  echo "en_GB.UTF-8 UTF-8" | sudo tee /etc/locale.gen > /dev/null
   sudo locale-gen
 }
 
 function conf_nvim() {
   inst_nvim_ext
 
-  rm -rf ~/.local/share/nvim
-  rm -rf ~/.config/nvim
+  rm -rf "$HOME/.local/share/nvim"
+  rm -rf "$HOME/.config/nvim"
 
-  mkdir -p ~/.config
+  mkdir -p "$HOME/.config"
 
-  ln -sf ~/.dotfiles/files/.config/nvim/ ~/.config/
+  ln -sf "$HOME/.dotfiles/files/.config/nvim/" "$HOME/.config/"
 }
 
 function conf_zsh() {
-  rm -rf ~/.zshrc
-  rm -rf ~/.histfile
-  rm -rf ~/.config/zsh
+  rm -rf "$HOME/.zshrc"
+  rm -rf "$HOME/.histfile"
+  rm -rf "$HOME/.config/zsh"
 
-  mkdir -p ~/.config/zsh/theme
+  mkdir -p "$HOME/.config/zsh/theme"
 
-  ln -sf ~/.dotfiles/files/.zshrc ~/.zshrc
-  ln -sf ~/.dotfiles/files/.config/zsh/theme/theme.zsh ~/.config/zsh/theme/theme.zsh
+  ln -sf "$HOME/.dotfiles/files/.zshrc" "$HOME/.zshrc"
+  ln -sf "$HOME/.dotfiles/files/.config/zsh/theme/theme.zsh" "$HOME/.config/zsh/theme/theme.zsh"
 
-  chsh -s $(which zsh)
+  chsh -s "$(which zsh)"
 }
 
 
@@ -246,7 +248,7 @@ function conf_zsh() {
 ###############################
 
 if [[ "$flag_update" == true ]]; then
-  apt_update  
+  apt_update
 fi
 
 if [[ "$flag_upgrade" == true ]]; then
