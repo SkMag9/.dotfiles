@@ -58,7 +58,8 @@ return {
 
       -- Keymaps
       --- On Startup
-      vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, {})
+      vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist,
+        { desc = "show diagnostics list", })
 
       --- Only create keybinds when needed, aka on LspAttach
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -68,16 +69,32 @@ return {
           vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
           -- Buffer local mappings(:h vim.lsp.*)
-          local opts = { buffer = ev.buf }
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-          vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-          vim.keymap.set("n", "gf", vim.lsp.buf.format, opts)
-          vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-          vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover,
+            { desc = "hover", buffer = ev.buf })
+
+          vim.keymap.set("n", "gD", vim.lsp.buf.declaration,
+            { desc = "go to declration", buffer = ev.buf })
+
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition,
+            { desc = "go to definition", buffer = ev.buf })
+
+          vim.keymap.set("n", "gi", vim.lsp.buf.implementation,
+            { desc = "go to implementation", buffer = ev.buf })
+
+          vim.keymap.set("n", "gr", vim.lsp.buf.references,
+            { desc = "show list of references", buffer = ev.buf })
+
+          vim.keymap.set("n", "gf", vim.lsp.buf.format,
+            { desc = "format file", buffer = ev.buf })
+
+          vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help,
+            { desc = "signature help", buffer = ev.buf })
+
+          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
+            { desc = "rename", buffer = ev.buf })
+
+          vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action,
+            { desc = "code actions", buffer = ev.buf })
         end,
       })
     end
