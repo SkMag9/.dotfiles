@@ -8,7 +8,7 @@
 ###############################
 # Read arguments and set flags
 ###############################
-ARGS=$(getopt --options abcilnNtuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,conf-locale,inst-nvim,conf-nvim,inst-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
+ARGS=$(getopt --options abcilmnNtuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,conf-locale,inst-tmux,inst-nvim,conf-nvim,inst-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
 
 eval set --"$ARGS"
 
@@ -17,96 +17,123 @@ flag_upgrade="false"
 
 flag_inst_nvim="false"
 flag_inst_nvim_ext="false"
+flag_inst_tmux="false"
 flag_inst_utils="false"
 flag_inst_zsh="false"
 
 flag_conf_boot="false"
+flag_conf_locale="false"
 flag_conf_nvim="false"
 flag_conf_zsh="false"
 
 while true; do
   case "$1" in
-    -a|--inst-conf-all)
+    -a | --inst-conf-all)
       flag_update="true"
       flag_upgrade="true"
       flag_inst_nvim="true"
       flag_inst_nvim_ext="true"
+      flag_inst_tmux="true"
       flag_inst_utils="true"
       flag_inst_zsh="true"
       flag_conf_boot="true"
+      flag_conf_locale="true"
       flag_conf_nvim="true"
       flag_conf_zsh="true"
-      shift;;
+      shift
+      ;;
 
-    -b|--conf-boot)
+    -b | --conf-boot)
       flag_conf_boot="true"
-      shift;;
+      shift
+      ;;
 
-    -c|--conf-all)
+    -c | --conf-all)
       flag_update="true"
       flag_upgrade="true"
       flag_inst_nvim_ext="true"
       flag_conf_boot="true"
+      flag_conf_locale="true"
       flag_conf_nvim="true"
       flag_conf_zsh="true"
-      shift;;
+      shift
+      ;;
 
-    -l|--conf-locale)
+    -l | --conf-locale)
       flag_update="true"
       flag_conf_locale="true"
-      shift;;
+      shift
+      ;;
 
-    -i|--inst-all)
+    -i | --inst-all)
       flag_update="true"
       flag_upgrade="true"
       flag_inst_nvim="true"
+      flag_inst_tmux="true"
       flag_inst_utils="true"
       flag_inst_zsh="true"
-      shift;;
+      shift
+      ;;
 
-    -n|--inst-nvim)
+    -m | --inst-tmux)
+      flag_update="true"
+      flag_upgrade="true"
+      flag_inst_tmux="true"
+      shift
+      ;;
+
+    -n | --inst-nvim)
       flag_update="true"
       flag_upgrade="true"
       flag_inst_nvim="true"
-      shift;;
+      shift
+      ;;
 
-    -N|--conf-nvim)
+    -N | --conf-nvim)
       flag_update="true"
       flag_inst_nvim_ext="true"
       flag_conf_nvim="true"
-      shift;;
+      shift
+      ;;
 
-    -t|--inst-utils)
+    -t | --inst-utils)
       flag_update="true"
       flag_upgrade="true"
       flag_inst_utils="true"
-      shift;;
+      shift
+      ;;
 
-    -u|--update)
+    -u | --update)
       flag_update="true"
-      shift;;
+      shift
+      ;;
 
-    -U|--upgrade)
+    -U | --upgrade)
       flag_update="true"
       flag_upgrade="true"
-      shift;;
+      shift
+      ;;
 
-    -z|--inst-zsh)
+    -z | --inst-zsh)
       flag_update="true"
       flag_upgrade="true"
       flag_inst_zsh="true"
-      shift;;
+      shift
+      ;;
 
-    -Z|--conf-zsh)
+    -Z | --conf-zsh)
       flag_conf_zsh="true"
-      shift;;
+      shift
+      ;;
 
     --)
-      break;;
+      break
+      ;;
 
     *)
       usage_exit
-      exit 1;;
+      exit 1
+      ;;
   esac
 done
 
@@ -140,9 +167,8 @@ function backup_config() {
 }
 
 function write_log() {
-  echo "$(date) $*" >> "$HOME/skmag9_init.log"
+  echo "$(date) $*" >>"$HOME/skmag9_init.log"
 }
-
 
 # Install
 function inst_nvim() {
@@ -169,19 +195,20 @@ function inst_nvim_ext() {
   apt_update_upgrade
   sudo apt install ripgrep gcc -y
 
-
   # Install golang
   cd "$HOME" || exit
   wget https://go.dev/dl/go1.21.6.linux-amd64.tar.gz
   sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.6.linux-amd64.tar.gz
   rm -rf "$HOME/go1.21.6.linux-amd64.tar.gz"
 
-
-
   # Install needed Packages for Formatters, Linters, DAPs and LSPs
   go install mvdan.cc/gofumpt@latest
   go install github.com/segmentio/golines@latest
   go install -v github.com/incu6us/goimports-reviser/v3@latest
+}
+
+function inst_tmux() {
+  sudo apt install tmux -y
 }
 
 function inst_utils() {
@@ -211,8 +238,8 @@ function conf_boot() {
 function conf_locale() {
   # Configure Locales since Docker Image does not include them
   sudo apt install locales -y
-  printf '%s\n' LANG=en_GB.UTF-8 LC_ALL=C | sudo tee /etc/default/locale > /dev/null
-  echo "en_GB.UTF-8 UTF-8" | sudo tee /etc/locale.gen > /dev/null
+  printf '%s\n' LANG=en_GB.UTF-8 LC_ALL=C | sudo tee /etc/default/locale >/dev/null
+  echo "en_GB.UTF-8 UTF-8" | sudo tee /etc/locale.gen >/dev/null
   sudo locale-gen
 }
 
@@ -240,8 +267,6 @@ function conf_zsh() {
   chsh -s "$(which zsh)"
 }
 
-
-
 ###############################
 # Execute
 ###############################
@@ -255,11 +280,15 @@ if [[ "$flag_upgrade" == true ]]; then
 fi
 
 if [[ "$flag_conf_locale" == true ]]; then
-  conf_zsh_docker
+  conf_locale
 fi
 
 if [[ "$flag_inst_utils" == true ]]; then
   inst_utils
+fi
+
+if [[ "$flag_inst_tmux" == true ]]; then
+  inst_tmux
 fi
 
 if [[ "$flag_inst_nvim" == true ]]; then
@@ -285,8 +314,3 @@ fi
 if [[ "$flag_conf_boot" == true ]]; then
   conf_boot
 fi
-
-
-
-
-
