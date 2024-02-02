@@ -58,7 +58,7 @@ return {
 
       -- Keymaps
       --- On Startup
-      vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float, {})
+      vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, {})
 
       --- Only create keybinds when needed, aka on LspAttach
       vim.api.nvim_create_autocmd("LspAttach", {
