@@ -22,5 +22,11 @@ vim.keymap.set({ "n", "v", "i" }, "<C-l>", "<C-w>l",
   { desc = "window: switch to the right" })
 
 -- Terminal
+vim.keymap.set("n", "<leader>tv", ":vsplit<CR><C-w>l:term<CR>i",
+  { desc = "split vertically and open terminal in new window" })
+
+vim.keymap.set("n", "<leader>th", ":split<CR><C-w>j:term<CR>i",
+  { desc = "aplit horizontally and open terminal in new window" })
+
 vim.keymap.set("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true),
   { desc = "terminal: close" })
