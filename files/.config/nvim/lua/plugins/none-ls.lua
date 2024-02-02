@@ -28,6 +28,9 @@ return {
           null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.isort,
 
+          -- TOML
+          null_ls.builtins.formatting.taplo,
+
           -- Web Dev
           null_ls.builtins.formatting.prettier.with({
             extra_args = {},
@@ -58,6 +61,9 @@ return {
           -- Python
           "black",
           "isort",
+
+          -- TOML
+          "taplo",
 
           -- Web Dev
           "jq",
