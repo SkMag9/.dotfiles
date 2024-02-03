@@ -30,3 +30,6 @@ vim.keymap.set("n", "<leader>th", ":split<CR><C-w>j:term<CR>i",
 
 vim.keymap.set("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true),
   { desc = "terminal: close" })
+
+-- Editor
+--local augroup_numtoggle = vim.api.nv
