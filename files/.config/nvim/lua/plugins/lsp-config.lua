@@ -25,7 +25,7 @@ return {
           "html",
           -- "htmx-lsp",
           "lua_ls",
-          "pylsp",
+          "pyright",
           "sqlls",
           "terraformls",
           -- "tsserver", -- Typescript
@@ -46,16 +46,19 @@ return {
 
       -- Language Specific Setup
       --- Bash
-      lspconfig.bashls.setup({capabilities = capabilities})
+      lspconfig.bashls.setup({ capabilities = capabilities })
 
       --- Go
-      lspconfig.gopls.setup({capabilities = capabilities})
+      lspconfig.gopls.setup({ capabilities = capabilities })
 
       --- Lua
-      lspconfig.lua_ls.setup({capabilities = capabilities})
+      lspconfig.lua_ls.setup({ capabilities = capabilities })
+
+      --- Python
+      lspconfig.pyright.setup({ capabilities = capabilities })
 
       --- TypeScript
-      lspconfig.tsserver.setup({capabilities = capabilities})
+      lspconfig.tsserver.setup({ capabilities = capabilities })
 
       -- Keymaps
       --- On Startup

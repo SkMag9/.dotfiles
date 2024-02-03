@@ -52,6 +52,9 @@ return {
     config = function()
       require("mason-null-ls").setup({
         ensure_installed = {
+          -- Global
+          "trivy",
+
           -- Bash
           "shellcheck",
 
