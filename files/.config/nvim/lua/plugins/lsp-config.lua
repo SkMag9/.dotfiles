@@ -41,20 +41,21 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       -- Global Language Server Setup
+      local capabilities = require("cmp_nvim_lsp").default_capabilities() -- completion stuff
       local lspconfig = require("lspconfig")
 
       -- Language Specific Setup
       --- Bash
-      lspconfig.bashls.setup({})
+      lspconfig.bashls.setup({capabilities = capabilities})
 
       --- Go
-      lspconfig.gopls.setup({})
+      lspconfig.gopls.setup({capabilities = capabilities})
 
       --- Lua
-      lspconfig.lua_ls.setup({})
+      lspconfig.lua_ls.setup({capabilities = capabilities})
 
       --- TypeScript
-      lspconfig.tsserver.setup({})
+      lspconfig.tsserver.setup({capabilities = capabilities})
 
       -- Keymaps
       --- On Startup
