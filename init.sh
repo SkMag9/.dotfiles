@@ -236,7 +236,7 @@ function inst_utils() {
 
 function inst_iac_utils() {
   # Terraform
-  if ! command -v &>/dev/null; then
+  if ! command -v terraform &>/dev/null; then
     sudo apt install gnupg software-properties-common curl -y
     wget -O- https://apt.releases.hashicorp.com/gpg \
       | gpg --dearmor \
