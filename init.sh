@@ -340,6 +340,10 @@ function conf_zsh() {
   ln -sf "$HOME/.dotfiles/files/.config/zsh/theme/theme.zsh" "$HOME/.config/zsh/theme/theme.zsh"
 
   chsh -s "$(which zsh)"
+  if [[ -f "$HOME/.zshrc" ]]; then
+    # shellcheck disable=1091
+    source "$HOME/.zshrc"
+  fi
 }
 
 ###############################
