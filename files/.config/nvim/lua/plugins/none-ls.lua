@@ -86,6 +86,7 @@ return {
           -- Web Dev
           "jq",
           "prettier",
+          "eslint_d",
         },
       })
     end,

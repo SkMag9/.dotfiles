@@ -20,6 +20,7 @@ return {
           "cssls",
           -- "docker-compose-language-service",
           "dockerls",
+          "eslint",
           "gopls",
           "helm_ls",
           "html",
@@ -28,7 +29,7 @@ return {
           "pyright",
           "sqlls",
           "terraformls",
-          -- "tsserver", -- Typescript
+          "tsserver", -- Typescript
           -- "vue-language-server", -- Vue
           "yamlls",
         },
@@ -62,6 +63,7 @@ return {
 
       --- TypeScript
       lspconfig.tsserver.setup({ capabilities = capabilities })
+      lspconfig.eslint.setup({ capabilities = capabilities })
 
       -- Keymaps
       --- On Startup
