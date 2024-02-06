@@ -374,16 +374,16 @@ if [[ "$flag_inst_zsh" == true ]]; then
   inst_zsh
 fi
 
+if [[ "$flag_conf_zsh" == true ]]; then
+  conf_zsh
+fi
+
 if [[ "$flag_inst_iac_utils" == true ]]; then
   inst_iac_utils
 fi
 
 if [[ "$flag_inst_nvim_ext" == true ]]; then
   inst_nvim_ext
-fi
-
-if [[ "$flag_conf_zsh" == true ]]; then
-  conf_zsh
 fi
 
 if [[ "$flag_conf_nvim" == true ]]; then
