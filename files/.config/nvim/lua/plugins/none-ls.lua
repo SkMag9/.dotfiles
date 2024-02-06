@@ -28,6 +28,11 @@ return {
           null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.isort,
 
+          -- Terraform
+          null_ls.builtins.diagnostics.terraform_validate,
+          null_ls.builtins.diagnostics.tfsec,
+          null_ls.builtins.formatting.terraform_fmt,
+
           -- TOML
           null_ls.builtins.formatting.taplo,
 
@@ -64,6 +69,10 @@ return {
           -- Python
           "black",
           "isort",
+
+          -- Terraform
+          "tflint",
+          "tfsec",
 
           -- TOML
           "taplo",

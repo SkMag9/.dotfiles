@@ -57,6 +57,8 @@ return {
       --- Python
       lspconfig.pyright.setup({ capabilities = capabilities })
 
+      lspconfig.terraformls.setup({ capabilities = capabilities })
+
       --- TypeScript
       lspconfig.tsserver.setup({ capabilities = capabilities })
 
