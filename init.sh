@@ -8,7 +8,7 @@
 ###############################
 # Read arguments and set flags
 ###############################
-ARGS=$(getopt --options abcilmnNtTuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,conf-locale,inst-tmux,inst-nvim,conf-nvim,inst-utils,inst-terraform,update,upgrade,inst-zsh,conf-zsh" -- "$@")
+ARGS=$(getopt --options abcilmnNtTuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,conf-locale,inst-tmux,inst-nvim,conf-nvim,inst-utils,inst-iac-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
 
 eval set --"$ARGS"
 
@@ -19,7 +19,7 @@ flag_inst_nvim="false"
 flag_inst_nvim_ext="false"
 flag_inst_tmux="false"
 flag_inst_utils="false"
-flag_inst_terraform="false"
+flag_inst_iac_utils="false"
 flag_inst_zsh="false"
 
 flag_conf_boot="false"
@@ -104,10 +104,10 @@ while true; do
       shift
       ;;
 
-    -T | --inst-terraform)
-      flag_update="true"
-      flag_upgrade="true"
-      flag_inst_terraform="true"
+    -T | --inst-iac-utils)
+      #flag_update="true"
+      #flag_upgrade="true"
+      flag_inst_iac_utils="true"
       shift
       ;;
 
@@ -234,19 +234,71 @@ function inst_utils() {
   sudo apt install python3 python3-venv -y
 }
 
-function inst_terraform() {
-  sudo apt install gnupg software-properties-common curl -y
+function inst_iac_utils() {
+  # Terraform
+  if ! command -v &>/dev/null; then
+    sudo apt install gnupg software-properties-common curl -y
+    wget -O- https://apt.releases.hashicorp.com/gpg \
+      | gpg --dearmor \
+      | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+  https://apt.releases.hashicorp.com $(lsb_release -cs) main" \
+      | sudo tee /etc/apt/sources.list.d/hashicorp.list
 
-  wget -O- https://apt.releases.hashicorp.com/gpg | \
-  gpg --dearmor | \
-  sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    sudo apt update
+    sudo apt install terraform -y
+  else
+    sudo apt install --only-upgrade terraform -y
+  fi
 
-  echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
-  https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
-  sudo tee /etc/apt/sources.list.d/hashicorp.list
+  # OpenTofu
+  if ! command -v tofu &>/dev/null; then
+    sudo apt install apt-transport-https ca-certificates curl gnupg -y
 
-  sudo apt update
-  sudo apt install terraform -y
+    sudo install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://get.opentofu.org/opentofu.gpg | sudo tee /etc/apt/keyrings/opentofu.gpg >/dev/null
+    curl -fsSL https://packages.opentofu.org/opentofu/tofu/gpgkey | sudo gpg --no-tty --batch --dearmor -o /etc/apt/keyrings/opentofu-repo.gpg >/dev/null
+    sudo chmod a+r /etc/apt/keyrings/opentofu.gpg
+
+    echo \
+      "deb [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main
+deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main" \
+      | sudo tee /etc/apt/sources.list.d/opentofu.list >/dev/null
+
+    sudo apt update
+    sudo apt install tofu -y
+  else
+    sudo apt install --only-upgrade tofu -y
+  fi
+
+  # Helm
+  if ! command -v helm &>/dev/null; then
+    curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg >/dev/null
+    sudo apt-get install apt-transport-https --yes
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+
+    sudo apt-get update
+    sudo apt-get install helm
+  else
+    sudo apt install --only-upgrade helm -y
+  fi
+
+  # Helmfile
+  if ! command -v helmfile &>/dev/null; then
+    cd "$HOME" || exit
+    wget https://github.com/helmfile/helmfile/releases/download/v0.161.0/helmfile_0.161.0_linux_amd64.tar.gz
+    sudo rm -rf /usr/local/bin/helmfile && sudo tar -C /usr/local/bin -xzf helmfile_0.161.0_linux_amd64.tar.gz helmfile
+
+    rm -rf "$HOME/helmfile_0.161.0_linux_amd64.tar.gz"
+  fi
+
+  # kubectl
+  if ! command -v kubectl &>/dev/null; then
+
+    cd "$HOME" || exit
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+  fi
 }
 
 function inst_zsh() {
@@ -322,8 +374,8 @@ if [[ "$flag_inst_zsh" == true ]]; then
   inst_zsh
 fi
 
-if [[ "$flag_inst_terraform" == true ]]; then
-  inst_terraform
+if [[ "$flag_inst_iac_utils" == true ]]; then
+  inst_iac_utils
 fi
 
 if [[ "$flag_inst_nvim_ext" == true ]]; then
