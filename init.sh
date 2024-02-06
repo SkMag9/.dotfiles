@@ -21,7 +21,6 @@ flag_inst_tmux="false"
 flag_inst_utils="false"
 flag_inst_iac_utils="false"
 flag_inst_zsh="false"
-
 flag_conf_boot="false"
 flag_conf_locale="false"
 flag_conf_nvim="false"
@@ -36,6 +35,7 @@ while true; do
       flag_inst_nvim_ext="true"
       flag_inst_tmux="true"
       flag_inst_utils="true"
+      flag_inst_iac_utils="true"
       flag_inst_zsh="true"
       flag_conf_boot="true"
       flag_conf_locale="true"
@@ -70,6 +70,7 @@ while true; do
       flag_update="true"
       flag_upgrade="true"
       flag_inst_nvim="true"
+      flag_inst_iac_utils="true"
       flag_inst_tmux="true"
       flag_inst_utils="true"
       flag_inst_zsh="true"
@@ -105,8 +106,8 @@ while true; do
       ;;
 
     -T | --inst-iac-utils)
-      #flag_update="true"
-      #flag_upgrade="true"
+      flag_update="true"
+      flag_upgrade="true"
       flag_inst_iac_utils="true"
       shift
       ;;
@@ -213,6 +214,13 @@ function inst_nvim_ext() {
   go install mvdan.cc/gofumpt@latest
   go install github.com/segmentio/golines@latest
   go install -v github.com/incu6us/goimports-reviser/v3@latest
+
+  # Trivy
+  sudo apt install wget apt-transport-https gnupg lsb-release -y
+  wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg >/dev/null
+  echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+  sudo apt update
+  sudo apt install trivy -y
 }
 
 function inst_tmux() {

@@ -7,6 +7,11 @@ return {
 
       null_ls.setup({
         sources = {
+          -- Global
+          null_ls.builtins.diagnostics.trivy.with({
+            extra_filetypes = { "dockerfile", "go", "gomod", "gowork", "gotmpl", "yaml", "yaml.ansible", "yaml.docker-compose" },
+          }),
+
           -- Bash
           null_ls.builtins.diagnostics.shellcheck,
           null_ls.builtins.code_actions.shellcheck,

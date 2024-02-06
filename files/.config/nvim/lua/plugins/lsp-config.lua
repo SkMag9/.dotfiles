@@ -57,6 +57,7 @@ return {
       --- Python
       lspconfig.pyright.setup({ capabilities = capabilities })
 
+      -- Terraform
       lspconfig.terraformls.setup({ capabilities = capabilities })
 
       --- TypeScript
