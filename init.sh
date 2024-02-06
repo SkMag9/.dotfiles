@@ -306,6 +306,7 @@ deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-rep
     cd "$HOME" || exit
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
     sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+    sudo rm -rf "$HOME/kubectl"
   fi
 }
 
@@ -315,7 +316,7 @@ function inst_zsh() {
 
 # Config
 function conf_boot() {
-  sudo ln -sf "$HOME/.dotfiles/files/wsl.conf /etc/wsl.conf"
+  sudo ln -sf "$HOME/.dotfiles/files/wsl.conf" "/etc/wsl.conf"
 }
 
 function conf_locale() {
