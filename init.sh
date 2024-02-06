@@ -8,7 +8,7 @@
 ###############################
 # Read arguments and set flags
 ###############################
-ARGS=$(getopt --options abcilmnNtuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,conf-locale,inst-tmux,inst-nvim,conf-nvim,inst-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
+ARGS=$(getopt --options abcilmnNtTuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,conf-locale,inst-tmux,inst-nvim,conf-nvim,inst-utils,inst-terraform,update,upgrade,inst-zsh,conf-zsh" -- "$@")
 
 eval set --"$ARGS"
 
@@ -19,6 +19,7 @@ flag_inst_nvim="false"
 flag_inst_nvim_ext="false"
 flag_inst_tmux="false"
 flag_inst_utils="false"
+flag_inst_terraform="false"
 flag_inst_zsh="false"
 
 flag_conf_boot="false"
@@ -100,6 +101,13 @@ while true; do
       flag_update="true"
       flag_upgrade="true"
       flag_inst_utils="true"
+      shift
+      ;;
+
+    -T | --inst-terraform)
+      flag_update="true"
+      flag_upgrade="true"
+      flag_inst_terraform="true"
       shift
       ;;
 
@@ -226,6 +234,21 @@ function inst_utils() {
   sudo apt install python3 python3-venv -y
 }
 
+function inst_terraform() {
+  sudo apt install gnupg software-properties-common curl -y
+
+  wget -O- https://apt.releases.hashicorp.com/gpg | \
+  gpg --dearmor | \
+  sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+  echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+  https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+  sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+  sudo apt update
+  sudo apt install terraform -y
+}
+
 function inst_zsh() {
   sudo apt install zsh -y
 }
@@ -297,6 +320,10 @@ fi
 
 if [[ "$flag_inst_zsh" == true ]]; then
   inst_zsh
+fi
+
+if [[ "$flag_inst_terraform" == true ]]; then
+  inst_terraform
 fi
 
 if [[ "$flag_inst_nvim_ext" == true ]]; then
