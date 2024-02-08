@@ -206,7 +206,7 @@ function inst_nvim_ext() {
 
   # Install Newer Version of node
   sudo npm install -g n
-  sudo npm stable
+  sudo n stable
 
   # Install golang
   cd "$HOME" || exit
