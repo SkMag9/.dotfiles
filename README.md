@@ -44,4 +44,6 @@ cd .dotfiles
 - [ ] Remove need to include two parameters because of how paths are constructed
 - [ ] Make `backup_config()` check the amount of arguments as failsafe
 - [ ] Refactor `backup_config()` to accept multiple paths and backup all of them
-- [ ] Change NTP so it doesn't Require root
+- [x] Change NTP so it doesn't Require root
+- [ ] (Optional) move config to Ansible to make it more idempotent
+

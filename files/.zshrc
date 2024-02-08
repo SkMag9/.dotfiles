@@ -3,9 +3,6 @@ export LC_ALL="en_GB.UTF-8"
 export LANGUAGE="en_GB.UTF-8"
 export LANG="en_GB.UTF-8"
 
-# run ntp
-sudo ntpdate ch.pool.ntp.org >> ~/.ntp_history
-
 # Configs
 CASE_SENSITIVE="true"
 
