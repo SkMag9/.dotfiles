@@ -8,7 +8,7 @@
 ###############################
 # Read arguments and set flags
 ###############################
-ARGS=$(getopt --options abcilmnNtTuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,conf-locale,inst-tmux,inst-nvim,conf-nvim,inst-utils,inst-iac-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
+ARGS=$(getopt --options abcilmMnNtTuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,conf-locale,inst-tmux,conf-tmux,inst-nvim,conf-nvim,inst-utils,inst-iac-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
 
 eval set --"$ARGS"
 
@@ -24,6 +24,7 @@ flag_inst_zsh="false"
 flag_conf_boot="false"
 flag_conf_locale="false"
 flag_conf_nvim="false"
+flag_conf_tmux="false"
 flag_conf_zsh="false"
 
 while true; do
@@ -81,6 +82,10 @@ while true; do
       flag_update="true"
       flag_upgrade="true"
       flag_inst_tmux="true"
+      shift
+      ;;
+    -M | --conf-tmux)
+      flag_conf_tmux="true"
       shift
       ;;
 
@@ -337,9 +342,17 @@ function conf_nvim() {
   rm -rf "$HOME/.local/share/nvim"
   rm -rf "$HOME/.config/nvim"
 
-  mkdir -p "$HOME/.config"
+  mkdir -p "$HOME/.config/"
 
   ln -sf "$HOME/.dotfiles/files/.config/nvim/" "$HOME/.config/"
+}
+
+function conf_tmux() {
+  rm -rf "$HOME/.config/tmux"
+
+  mkdir -p "$HOME/.config/"
+
+  ln -sf "$HOME/.dotfiles/files/.config/tmux/" "$HOME/.config/"
 }
 
 function conf_zsh() {
@@ -347,16 +360,12 @@ function conf_zsh() {
   rm -rf "$HOME/.histfile"
   rm -rf "$HOME/.config/zsh"
 
-  mkdir -p "$HOME/.config/zsh/theme"
+  mkdir -p "$HOME/.config/"
 
   ln -sf "$HOME/.dotfiles/files/.zshrc" "$HOME/.zshrc"
-  ln -sf "$HOME/.dotfiles/files/.config/zsh/theme/theme.zsh" "$HOME/.config/zsh/theme/theme.zsh"
+  ln -sf "$HOME/.dotfiles/files/.config/zsh/" "$HOME/.config/"
 
   sudo chsh -s "$(which zsh)" skmag9
-  if [[ -f "$HOME/.zshrc" ]]; then
-    # shellcheck disable=1091
-    source "$HOME/.zshrc"
-  fi
 }
 
 ###############################
@@ -393,6 +402,10 @@ fi
 
 if [[ "$flag_conf_zsh" == true ]]; then
   conf_zsh
+fi
+
+if [[ "$flag_conf_tmux" == true ]]; then
+  conf_tmux
 fi
 
 if [[ "$flag_inst_iac_utils" == true ]]; then

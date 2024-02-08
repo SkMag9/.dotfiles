@@ -8,19 +8,6 @@ vim.keymap.set("n", "<leader>vh", ":split<CR>",
 vim.keymap.set("n", "<leader>x", ":q<CR>",
   { desc = "window: close", })
 
--- View Nav Keybinds
-vim.keymap.set({ "n", "v", "i" }, "<C-h>", "<C-w>h",
-  { desc = "window: switch to the left", })
-
-vim.keymap.set({ "n", "v", "i" }, "<C-j>", "<C-w>j",
-  { desc = "window: switch down" })
-
-vim.keymap.set({ "n", "v", "i" }, "<C-k>", "<C-w>k",
-  { desc = "window: switch up" })
-
-vim.keymap.set({ "n", "v", "i" }, "<C-l>", "<C-w>l",
-  { desc = "window: switch to the right" })
-
 -- Terminal
 vim.keymap.set("n", "<leader>tv", ":vsplit<CR><C-w>l:term<CR>i",
   { desc = "split vertically and open terminal in new window" })
