@@ -235,7 +235,7 @@ function inst_utils() {
   sudo apt install curl git gzip jq neofetch tar tree unzip wget -y
 
   # NTP
-  sudo apt install ntpdate -y
+  sudo apt install ntp -y
 
   # Languages, Runtimes
   ## Python
