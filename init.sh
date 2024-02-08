@@ -204,6 +204,10 @@ function inst_nvim_ext() {
   apt_update_upgrade
   sudo apt install npm ripgrep gcc -y
 
+  # Install Newer Version of node
+  sudo npm install -g n
+  sudo npm stable
+
   # Install golang
   cd "$HOME" || exit
   wget https://go.dev/dl/go1.21.6.linux-amd64.tar.gz
@@ -348,7 +352,7 @@ function conf_zsh() {
   ln -sf "$HOME/.dotfiles/files/.zshrc" "$HOME/.zshrc"
   ln -sf "$HOME/.dotfiles/files/.config/zsh/theme/theme.zsh" "$HOME/.config/zsh/theme/theme.zsh"
 
-  chsh -s "$(which zsh)"
+  sudo chsh -s "$(which zsh)" skmag9
   if [[ -f "$HOME/.zshrc" ]]; then
     # shellcheck disable=1091
     source "$HOME/.zshrc"
