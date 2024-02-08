@@ -26,6 +26,9 @@ return {
             extra_args = { "-m", "80", "-t", "2", "--shorten-comments" },
           }),
 
+          -- JSON 
+          null_ls.builtins.formatting.jq,
+
           -- Lua
           null_ls.builtins.formatting.stylua,
 
