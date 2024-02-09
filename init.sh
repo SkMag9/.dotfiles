@@ -41,6 +41,7 @@ while true; do
       flag_conf_boot="true"
       flag_conf_locale="true"
       flag_conf_nvim="true"
+      flag_conf_tmux="true"
       flag_conf_zsh="true"
       shift
       ;;
@@ -57,6 +58,7 @@ while true; do
       flag_conf_boot="true"
       flag_conf_locale="true"
       flag_conf_nvim="true"
+      flag_conf_tmux="true"
       flag_conf_zsh="true"
       shift
       ;;
@@ -218,6 +220,8 @@ function inst_nvim_ext() {
   wget https://go.dev/dl/go1.21.6.linux-amd64.tar.gz
   sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.6.linux-amd64.tar.gz
   rm -rf "$HOME/go1.21.6.linux-amd64.tar.gz"
+
+  export PATH=$PATH:/usr/bin/go/bin:$HOME/go/bin
 
   # Install needed Packages for Formatters, Linters, DAPs and LSPs
   go install mvdan.cc/gofumpt@latest
