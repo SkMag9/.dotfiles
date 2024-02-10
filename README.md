@@ -4,16 +4,25 @@ Dotfile Setup for Debian in WSL.
 
 ## Setup
 
-Update APT.
+```powershell
+wsl --install debian --web-download
+```
+
+In WSL:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
-sudo apt install git
-git clone https://github.com/skmag9/.dotfiles ~/.dotfiles
-cd .dotfiles
-./init.sh -[options]
-# Restart Shell
+sudo apt update && sudo apt upgrade -y && sudo apt install git
+git clone https://<pat>@github.com/skmag9/.dotfiles ~/.dotfiles
+cd .dotfiles && ./init.sh -[options]
 ```
+
+Stop Debian to load boot config as well.
+
+```powershell
+wsl --terminate debian
+```
+
+Start Debian WSL again.
 
 ## Current TODOs
 
