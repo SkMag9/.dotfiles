@@ -221,12 +221,10 @@ function inst_nvim_ext() {
   sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.6.linux-amd64.tar.gz
   rm -rf "$HOME/go1.21.6.linux-amd64.tar.gz"
 
-  export PATH=$PATH:/usr/bin/go/bin:$HOME/go/bin
-
   # Install needed Packages for Formatters, Linters, DAPs and LSPs
-  go install mvdan.cc/gofumpt@latest
-  go install github.com/segmentio/golines@latest
-  go install -v github.com/incu6us/goimports-reviser/v3@latest
+  /usr/bin/go/bin/go install mvdan.cc/gofumpt@latest
+  /usr/bin/go/bin/go install github.com/segmentio/golines@latest
+  /usr/bin/go/bin/go install -v github.com/incu6us/goimports-reviser/v3@latest
 
   # Trivy
   sudo apt install wget apt-transport-https gnupg lsb-release -y
