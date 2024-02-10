@@ -30,8 +30,8 @@ Start Debian WSL again.
 - [x] Add Install Dependencies to successfully install LSPs
 - [x] Add NeoTree Toggle map to show buffers
 - [ ] Add Maps to operate buffers (open, close, etc.)
-- [ ] Find way to execute go install right after go download
-- [ ] Add LC_* variables to script to prevent warnings at runtime
+- [x] Find way to execute go install right after go download
+- [x] Add LC_* variables to script to prevent warnings at runtime
 
 ## Future Plans
 
