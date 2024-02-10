@@ -5,10 +5,6 @@
 # Version 0.0.1
 #################################################
 
-export LC_ALL="en_GB.UTF-8"
-export LANGUAGE="en_GB.UTF-8"
-export LANG="en_GB.UTF-8"
-
 ###############################
 # Read arguments and set flags
 ###############################
@@ -226,9 +222,9 @@ function inst_nvim_ext() {
   rm -rf "$HOME/go1.21.6.linux-amd64.tar.gz"
 
   # Install needed Packages for Formatters, Linters, DAPs and LSPs
-  /usr/bin/go/bin/go install mvdan.cc/gofumpt@latest
-  /usr/bin/go/bin/go install github.com/segmentio/golines@latest
-  /usr/bin/go/bin/go install -v github.com/incu6us/goimports-reviser/v3@latest
+  go install mvdan.cc/gofumpt@latest
+  go install github.com/segmentio/golines@latest
+  go install -v github.com/incu6us/goimports-reviser/v3@latest
 
   # Trivy
   sudo apt install wget apt-transport-https gnupg lsb-release -y
