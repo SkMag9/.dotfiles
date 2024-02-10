@@ -5,6 +5,10 @@
 # Version 0.0.1
 #################################################
 
+LC_ALL="en_GB.UTF-8"
+LANG="en_GB.UTF-8"
+LANGUAGE="en_GB.UTF-8"
+
 ###############################
 # Read arguments and set flags
 ###############################
