@@ -229,6 +229,8 @@ function inst_nvim_ext() {
   sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.6.linux-amd64.tar.gz
   rm -rf "$HOME/go1.21.6.linux-amd64.tar.gz"
 
+  PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
+
   # Install needed Packages for Formatters, Linters, DAPs and LSPs
   go install mvdan.cc/gofumpt@latest
   go install github.com/segmentio/golines@latest

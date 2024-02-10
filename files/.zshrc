@@ -21,7 +21,7 @@ alias history="history -i"
 bindkey -v
 
 # ENV Vars
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 
 # Aliases
 alias la="ls -alh"
