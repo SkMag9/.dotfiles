@@ -11,7 +11,7 @@ wsl --install debian --web-download
 In WSL:
 
 ```bash
-sudo apt update && sudo apt upgrade -y && sudo apt install git
+sudo apt update && sudo apt upgrade -y && sudo apt install git -y
 git clone https://<pat>@github.com/skmag9/.dotfiles ~/.dotfiles
 cd .dotfiles && ./init.sh -[options]
 ```
