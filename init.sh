@@ -8,7 +8,7 @@
 ###############################
 # Read arguments and set flags
 ###############################
-ARGS=$(getopt --options abcilmMnNtTuUzZ --long "inst-conf-all,conf-boot,conf-all,inst-all,conf-locale,inst-tmux,conf-tmux,inst-nvim,conf-nvim,inst-utils,inst-iac-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
+ARGS=$(getopt --options abcGilmMnNtTuUzZ --long "inst-conf-all,conf-boot,conf-all,conf-gitconfig,inst-all,conf-locale,inst-tmux,conf-tmux,inst-nvim,conf-nvim,inst-utils,inst-iac-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
 
 eval set --"$ARGS"
 
@@ -22,6 +22,7 @@ flag_inst_utils="false"
 flag_inst_iac_utils="false"
 flag_inst_zsh="false"
 flag_conf_boot="false"
+flag_conf_gitconfig="true"
 flag_conf_locale="false"
 flag_conf_nvim="false"
 flag_conf_tmux="false"
@@ -40,6 +41,7 @@ while true; do
       flag_inst_zsh="true"
       flag_conf_boot="true"
       flag_conf_locale="true"
+      flag_conf_gitconfig="true"
       flag_conf_nvim="true"
       flag_conf_tmux="true"
       flag_conf_zsh="true"
@@ -57,6 +59,7 @@ while true; do
       flag_inst_nvim_ext="true"
       flag_conf_boot="true"
       flag_conf_locale="true"
+      flag_conf_gitconfig="true"
       flag_conf_nvim="true"
       flag_conf_tmux="true"
       flag_conf_zsh="true"
@@ -77,6 +80,11 @@ while true; do
       flag_inst_tmux="true"
       flag_inst_utils="true"
       flag_inst_zsh="true"
+      shift
+      ;;
+
+    -G | --gitconfig)
+      flag_conf_gitconfig="true"
       shift
       ;;
 
@@ -330,6 +338,12 @@ function conf_boot() {
   sudo ln -sf "$HOME/.dotfiles/files/wsl.conf" "/etc/wsl.conf"
 }
 
+function conf_gitconfig() {
+  cd "$HOME/.dotfiles" || exit
+  git config user.name "SkMag9"
+  git config user.email "79118346+SkMag9@users.noreply.github.com"
+}
+
 function conf_locale() {
   # Configure Locales since Docker Image does not include them
   sudo apt install locales -y
@@ -416,6 +430,10 @@ fi
 
 if [[ "$flag_inst_nvim_ext" == true ]]; then
   inst_nvim_ext
+fi
+
+if [[ "$flag_conf_gitconfig" == true ]]; then
+  conf_gitconfig
 fi
 
 if [[ "$flag_conf_nvim" == true ]]; then
