@@ -21,7 +21,12 @@ alias history="history -i"
 bindkey -v
 
 # ENV Vars
+## Go
 export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
+
+## Ruby
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin/:$PATH"
 
 # Aliases
 alias la="ls -alh"

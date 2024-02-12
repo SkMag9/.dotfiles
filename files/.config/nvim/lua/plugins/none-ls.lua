@@ -26,7 +26,12 @@ return {
             extra_args = { "-m", "80", "-t", "2", "--shorten-comments" },
           }),
 
-          -- JSON 
+          -- Jekyll
+          null_ls.builtins.diagnostics.curlylint.with({
+            extra_filetypes = {"html"},
+          }),
+
+          -- JSON
           null_ls.builtins.formatting.jq,
 
           -- Lua
@@ -90,6 +95,7 @@ return {
           "jq",
           "prettier",
           "eslint_d",
+          "curlylint",
         },
       })
     end,

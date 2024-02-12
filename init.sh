@@ -12,7 +12,7 @@ LANGUAGE="en_GB.UTF-8"
 ###############################
 # Read arguments and set flags
 ###############################
-ARGS=$(getopt --options abcGilmMnNtTuUzZ --long "inst-conf-all,conf-boot,conf-all,conf-gitconfig,inst-all,conf-locale,inst-tmux,conf-tmux,inst-nvim,conf-nvim,inst-utils,inst-iac-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
+ARGS=$(getopt --options abcGijlmMnNtTuUzZ --long "inst-conf-all,conf-boot,conf-all,conf-gitconfig,inst-all,inst-jekyll,conf-locale,inst-tmux,conf-tmux,inst-nvim,conf-nvim,inst-utils,inst-iac-utils,update,upgrade,inst-zsh,conf-zsh" -- "$@")
 
 eval set --"$ARGS"
 
@@ -24,6 +24,7 @@ flag_inst_nvim_ext="false"
 flag_inst_tmux="false"
 flag_inst_utils="false"
 flag_inst_iac_utils="false"
+flag_inst_jekyll="false"
 flag_inst_zsh="false"
 flag_conf_boot="false"
 flag_conf_gitconfig="true"
@@ -42,6 +43,7 @@ while true; do
       flag_inst_tmux="true"
       flag_inst_utils="true"
       flag_inst_iac_utils="true"
+      # flag_inst_jekyll="true"
       flag_inst_zsh="true"
       flag_conf_boot="true"
       flag_conf_locale="true"
@@ -84,6 +86,14 @@ while true; do
       flag_inst_tmux="true"
       flag_inst_utils="true"
       flag_inst_zsh="true"
+      # flag_inst_jekyll="true"
+      shift
+      ;;
+
+    -j | --inst-jekyll)
+      flag_update="true"
+      flag_upgrade="true"
+      flag_inst_jekyll="true"
       shift
       ;;
 
@@ -335,6 +345,16 @@ deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-rep
   fi
 }
 
+function inst_jekyll() {
+  sudo apt-get install ruby-full build-essential
+
+  # shellcheck disable=2034
+  GEM_HOME="$HOME/gems"
+  PATH="$HOME/gems/bin:$PATH"
+
+  gem install jekyll bundler
+}
+
 function inst_zsh() {
   sudo apt install zsh -y
 }
@@ -345,7 +365,7 @@ function conf_boot() {
 }
 
 function conf_gitconfig() {
-  cd "$HOME/.dotfiles" || exit
+  #cd "$HOME/.dotfiles" || exit
   git config user.name "SkMag9"
   git config user.email "79118346+SkMag9@users.noreply.github.com"
 }
@@ -448,4 +468,8 @@ fi
 
 if [[ "$flag_conf_boot" == true ]]; then
   conf_boot
+fi
+
+if [[ "$flag_inst_jekyll" == true ]]; then
+  inst_jekyll
 fi
