@@ -379,8 +379,6 @@ function conf_locale() {
 }
 
 function conf_nvim() {
-  inst_nvim_ext
-
   rm -rf "$HOME/.local/share/nvim"
   rm -rf "$HOME/.config/nvim"
 
