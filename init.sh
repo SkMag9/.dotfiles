@@ -365,7 +365,7 @@ function conf_boot() {
 }
 
 function conf_gitconfig() {
-  #cd "$HOME/.dotfiles" || exit
+  cd "$HOME/.dotfiles" || exit
   git config user.name "SkMag9"
   git config user.email "79118346+SkMag9@users.noreply.github.com"
 }
