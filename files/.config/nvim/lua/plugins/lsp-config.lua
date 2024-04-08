@@ -98,7 +98,7 @@ return {
           vim.keymap.set("n", "gf", vim.lsp.buf.format,
             { desc = "format file", buffer = ev.buf })
 
-          vim.keymap.set("n", "<C-K>", vim.lsp.buf.signature_help,
+          vim.keymap.set("n", "<C-S-K>", vim.lsp.buf.signature_help,
             { desc = "signature help", buffer = ev.buf })
 
           vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
