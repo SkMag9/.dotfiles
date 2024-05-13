@@ -22,7 +22,7 @@ bindkey -v
 
 # ENV Vars
 ## Go
-export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
+export PATH="/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$PATH"
 
 ## Ruby
 export GEM_HOME="$HOME/gems"
