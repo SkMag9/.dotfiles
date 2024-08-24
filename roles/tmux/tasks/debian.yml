@@ -1,0 +1,9 @@
+---
+- name: Debian | tmux | Install
+  ansible.builtin.apt:
+    name: "tmux"
+    state: present
+
+- name: Debian | tmux | Config
+  ansible.builtin.debug:
+    msg: "Config Copy"
