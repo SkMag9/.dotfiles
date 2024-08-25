@@ -1,4 +1,12 @@
 ---
 - name: Install | Debian | tmux
-  import_tasks: debian.yml
   when: ansible_facts['os_family'] | lower == 'debian'
+  import_tasks: debian.yml
+  
+- name: tmux | Config
+  ansible.builtin.copy:
+    src: tmux
+    dest: "/home/{{ ansible_user_id }}/.config/"
+    mode: "0744"
+    directory_mode: "0755"
+    force: true
