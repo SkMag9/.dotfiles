@@ -21,6 +21,10 @@ alias history="history -i"
 bindkey -v
 
 # ENV Vars
+## Java
+export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+export PATH=$PATH:$JAVA_HOME/bin
+
 ## Go
 export PATH="/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$PATH"
 
