@@ -18,19 +18,17 @@ return {
           "ansiblels",
           "bashls",
           "cssls",
-          -- "docker-compose-language-service",
           "dockerls",
           "eslint",
           "gopls",
           "helm_ls",
           "html",
-          -- "htmx-lsp",
+          "lemminx",
           "lua_ls",
           "pyright",
           "sqlls",
           "terraformls",
           "ts_ls", -- Typescript
-          -- "vue-language-server", -- Vue
           "yamlls",
         },
       })
@@ -66,6 +64,9 @@ return {
       lspconfig.cssls.setup({ capabilities = capabilities })
       lspconfig.ts_ls.setup({ capabilities = capabilities })
       lspconfig.eslint.setup({ capabilities = capabilities })
+
+      --- XML
+      lspconfig.lemminx.setup({ capabilities = capabilities })
 
       -- Keymaps
       --- On Startup
