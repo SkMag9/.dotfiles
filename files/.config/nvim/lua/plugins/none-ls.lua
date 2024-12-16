@@ -26,6 +26,9 @@ return {
           null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.isort,
 
+          -- Jenkinsfile
+          null_ls.builtins.formatting.npm_groovy_lint,
+
           -- Terraform
           null_ls.builtins.diagnostics.terraform_validate,
           null_ls.builtins.diagnostics.tfsec,
@@ -63,6 +66,9 @@ return {
           -- Python
           "black",
           "isort",
+
+          -- Jenkinsfile
+          "npm-groovy-lint",
 
           -- Terraform
           "tflint",

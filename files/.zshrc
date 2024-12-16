@@ -53,3 +53,5 @@ alias vd="cd $HOME/.dotfiles && v"
 # Theme 
 source ~/.config/zsh/theme/theme.zsh
 
+# GPG Signing
+export GPG_TTY=$(tty)

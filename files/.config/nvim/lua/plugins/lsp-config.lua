@@ -20,6 +20,7 @@ return {
           "cssls",
           "dockerls",
           "eslint",
+          "jsonnet_ls",
           "gopls",
           "helm_ls",
           "html",
@@ -46,6 +47,9 @@ return {
       -- Language Specific Setup
       --- Bash
       lspconfig.bashls.setup({ capabilities = capabilities })
+
+      --- jsonnet
+      lspconfig.jsonet_ls.setup({ capabilities = capabilities })
 
       --- Go
       lspconfig.gopls.setup({ capabilities = capabilities })
