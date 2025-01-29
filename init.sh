@@ -222,10 +222,10 @@ function inst_nvim() {
   make CMAKE_BUILD_TYPE=RelWithDebInfo
 
   # Package & Install NeoVim
-  cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
+  cd build && cpack -G DEB && sudo dpkg -i nvim-linux-x86_64.deb
 
   # Cleanup
-  cd "$HOME" && rm -rf "$HOME/neovim"
+  #cd "$HOME" && rm -rf "$HOME/neovim"
 }
 
 function inst_nvim_ext() {
