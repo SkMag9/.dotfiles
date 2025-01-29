@@ -29,7 +29,7 @@ return {
           "pyright",
           "sqlls",
           "terraformls",
-          "tsserver", -- Typescript
+          "ts_ls", -- Typescript
           -- "vue-language-server", -- Vue
           "yamlls",
         },
@@ -64,7 +64,7 @@ return {
       --- WebDev
       lspconfig.html.setup({ capabilities = capabilities })
       lspconfig.cssls.setup({ capabilities = capabilities })
-      lspconfig.tsserver.setup({ capabilities = capabilities })
+      lspconfig.ts_ls.setup({ capabilities = capabilities })
       lspconfig.eslint.setup({ capabilities = capabilities })
 
       -- Keymaps
