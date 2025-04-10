@@ -9,6 +9,11 @@ LC_ALL="en_GB.UTF-8"
 LANG="en_GB.UTF-8"
 LANGUAGE="en_GB.UTF-8"
 
+# Versions
+
+GO_VERSION="1.24.2"
+HELMFILE_VERSION="0.171.0"
+
 ###############################
 # Read arguments and set flags
 ###############################
@@ -225,7 +230,7 @@ function inst_nvim() {
   cd build && cpack -G DEB && sudo dpkg -i nvim-linux-x86_64.deb
 
   # Cleanup
-  #cd "$HOME" && rm -rf "$HOME/neovim"
+  cd "$HOME" && rm -rf "$HOME/neovim"
 }
 
 function inst_nvim_ext() {
@@ -239,9 +244,9 @@ function inst_nvim_ext() {
 
   # Install golang
   cd "$HOME" || exit
-  wget https://go.dev/dl/go1.22.5.linux-amd64.tar.gz
-  sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.22.5.linux-amd64.tar.gz
-  rm -rf "$HOME/go1.22.5.linux-amd64.tar.gz"
+  wget https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
+  sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
+  rm -rf "$HOME/go${GO_VERSION}.linux-amd64.tar.gz"
 
   PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 
@@ -329,10 +334,10 @@ deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-rep
   # Helmfile
   if ! command -v helmfile &>/dev/null; then
     cd "$HOME" || exit
-    wget https://github.com/helmfile/helmfile/releases/download/v0.161.0/helmfile_0.161.0_linux_amd64.tar.gz
-    sudo rm -rf /usr/local/bin/helmfile && sudo tar -C /usr/local/bin -xzf helmfile_0.161.0_linux_amd64.tar.gz helmfile
+    wget https://github.com/helmfile/helmfile/releases/download/v${HELMFILE_VERSION}/helmfile_${HELMFILE_VERSION}_linux_amd64.tar.gz
+    sudo rm -rf /usr/local/bin/helmfile && sudo tar -C /usr/local/bin -xzf helmfile_${HELMFILE_VERSION}_linux_amd64.tar.gz helmfile
 
-    rm -rf "$HOME/helmfile_0.161.0_linux_amd64.tar.gz"
+    rm -rf "$HOME/helmfile_${HELMFILE_VERSION}_linux_amd64.tar.gz"
   fi
 
   # kubectl
@@ -396,6 +401,8 @@ function conf_tmux() {
 }
 
 function conf_zsh() {
+  sudo apt install figlet lolcat -y
+  
   rm -rf "$HOME/.zshrc"
   rm -rf "$HOME/.histfile"
   rm -rf "$HOME/.config/zsh"
@@ -404,6 +411,8 @@ function conf_zsh() {
 
   ln -sf "$HOME/.dotfiles/files/.zshrc" "$HOME/.zshrc"
   ln -sf "$HOME/.dotfiles/files/.config/zsh/" "$HOME/.config/"
+
+  chmod +x $HOME/.config/zsh/motd.sh
 
   sudo chsh -s "$(which zsh)" skmag9
 }

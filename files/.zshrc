@@ -7,7 +7,7 @@ export LANG="en_GB.UTF-8"
 CASE_SENSITIVE="true"
 
 # History
-export HISTFILE=~/.histfile
+export HISTFILE=$HOME/.histfile
 export HIST_STAMP="yyyy-mm-dd"
 export HISTSIZE=1000
 export SAVEHIST=5000
@@ -47,5 +47,7 @@ alias vd="cd $HOME/.dotfiles && v"
 # Plugins
 
 # Theme 
-source ~/.config/zsh/theme/theme.zsh
+source $HOME/.config/zsh/theme/theme.zsh
 
+# MOTD
+$HOME/.config/zsh/motd.sh
