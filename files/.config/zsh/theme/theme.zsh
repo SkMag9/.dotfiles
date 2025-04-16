@@ -68,13 +68,13 @@ get_path() {
   
   case $PWD in
     $HOME )
-      PATH_ICON="\uf015" # House Icon
+      PATH_ICON="\uf015 " # House Icon
       ;;
     "$HOME/projects"* ) 
-      PATH_ICON="\uf121" # Dev Icon
+      PATH_ICON="\uf121 " # Dev Icon
       ;;
     *)
-      PATH_ICON="\uf07b" # Folder Icon
+      PATH_ICON="\uf07b " # Folder Icon
       ;;
   esac
   
@@ -100,12 +100,12 @@ zsh_prompt_git_prompt() {
     case ${vcs_info_msg_0_} in
       *"\uf067"*|*"\uf128"*)
         GIT_STATUS_BG="${GIT_BG_MODIFIED}"
-	GIT_STATUS_FG="${GIT_FG_MODIFIED}"
+	      GIT_STATUS_FG="${GIT_FG_MODIFIED}"
         ;;
       *)
         GIT_STATUS_BG="${GIT_BG_UNMODIFIED}"
-	GIT_STATUS_FG="${GIT_FG_UNMODIFIED}"
-	;;
+	      GIT_STATUS_FG="${GIT_FG_UNMODIFIED}"
+	      ;;
     esac
 
 
