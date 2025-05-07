@@ -1,0 +1,5 @@
+---
+- name: System Setup for Fedora
+  ansible.builtin.dnf5:
+    name: "kitty"
+    state: latest

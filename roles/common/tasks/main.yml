@@ -1,0 +1,4 @@
+---
+- name: System Setup for Fedora
+  import_tasks: fedora.yml
+  when: ansible_facts['distribution']|lower == 'fedora'
