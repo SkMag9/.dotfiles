@@ -1,8 +1,5 @@
 # System Setup
 
 ```shell
-sudo dnf upgrade -y
-sudo dnf install -y ansible-core git 
-git clone https://github.com/skmag9/.dotfiles ${HOME}/.dotfiles
-cd .dotfiles && ansible-playbook main.yml
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/SkMag9/.dotfiles/refs/heads/v2.0/install.sh)"
 ```

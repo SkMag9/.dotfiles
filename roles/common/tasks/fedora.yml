@@ -21,4 +21,5 @@
       - trivy
       - unzip
       - wget
+      - zsh
     state: latest
