@@ -46,6 +46,9 @@ return {
       local lspconfig = require("lspconfig")
 
       -- Language Specific Setup
+      --- Ansible
+      lspconfig.ansiblels.setup({ capabilities = capabilities })
+
       --- Bash
       lspconfig.bashls.setup({ capabilities = capabilities })
 
