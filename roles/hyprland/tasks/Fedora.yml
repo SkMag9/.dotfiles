@@ -23,3 +23,23 @@
     cmd: "systemctl set-default graphical.target"
   when: "'graphical' not in systemd_default.stdout"
   changed_when: true
+
+- name: "SwayNotificationCenter | Fedora | Check SwayNotificationCenter Repo"
+  ansible.builtin.command:
+    cmd: "dnf copr list"
+  changed_when: false
+  register: copr_repositories
+
+- name: "SwayNotificatinoCenter | Fedora | Enable SwayNotificationCenter Repo"
+  become: true
+  ansible.builtin.command:
+    cmd: "dnf copr enable erikreider/SwayNotificationCenter -y"
+  when: "'SwayNotificationCenter' not in copr_repositories.stdout"
+  changed_when: true
+
+- name: "SwayNotificationCenter | Fedora | Install SwayNotificationCenter"
+  become: true
+  ansible.builtin.dnf5:
+    name:
+      - SwayNotificationCenter
+    state: latest

@@ -23,3 +23,16 @@ For customized installation:
 - Set the correct monitor in ``roles/hyprland/files/monitors.conf``
 - Default Keyboard Layout is de_CH
 
+
+## ToDo
+
+- [ ] Screen shot utility
+- [ ] Notifications
+- [ ] Pipewire + wireplumber
+- [ ] XDG Desktop Portal
+- [ ] Authentication Agent
+- [ ] Qt Wayland Support
+- [ ] Lock Screen
+- [ ] Idle
+- [ ] Finalize Waybar Config
+
