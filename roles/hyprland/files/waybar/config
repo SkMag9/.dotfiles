@@ -7,7 +7,9 @@
   "modules-center": [
     "hyprland/window"
   ],
-  "modules-right": [],
+  "modules-right": [
+    "clock"
+  ],
   
   // Module Config
   "clock": {
