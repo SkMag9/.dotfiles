@@ -1,4 +1,10 @@
 ---
+- name: "Fedora | Update Packages"
+  become: true
+  ansible.builtin.dnf5:
+    name: "*"
+    state: latest
+
 - name: "Fedora | System Setup"
   become: true
   ansible.builtin.dnf5:
