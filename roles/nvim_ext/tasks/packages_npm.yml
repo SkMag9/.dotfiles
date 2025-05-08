@@ -1,0 +1,12 @@
+---
+- name: "NeoVim Ext | Install NPM Packages"
+  ansible.builtin.command:
+    cmd: "npm install {{ item.package }}"
+    creates: "$HOME/.npm/node_modules/.bin/{{ item.cmd }}"
+  register: npm_install
+  changed_when: npm_install.rc != 0
+  loop_control:
+    label: "{{ item.package }}"
+  loop: "{{ npm.packages }}"
+
+

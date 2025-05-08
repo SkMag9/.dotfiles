@@ -1,0 +1,7 @@
+---
+- name: "NeoVim | Fedora | Install NeoVim"
+  become: true
+  ansible.builtin.dnf5:
+    name:
+      - neovim
+    state: latest

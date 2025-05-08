@@ -1,0 +1,9 @@
+---
+default_roles:
+  - common
+  #- hyprland
+  #- iac
+  - nvim
+  - nvim_ext # Includes config and packages needed for it
+  #- tmux
+  #- zsh

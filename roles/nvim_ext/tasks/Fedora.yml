@@ -1,0 +1,12 @@
+---
+- name: "NeoVim Ext | Fedora | Install Packages"
+  become: true
+  ansible.builtin.dnf5:
+    name:
+      - ansible-lint
+      - gcc
+      - golang
+      - nodejs
+      - ripgrep
+      - trivy
+    state: latest

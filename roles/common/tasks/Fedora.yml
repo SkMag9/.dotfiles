@@ -1,24 +1,21 @@
 ---
-- name: System Setup for Fedora
+- name: "Fedora | System Setup"
   become: true
   ansible.builtin.dnf5:
     name:
       - curl
       - fastfetch
       - file
-      - gcc
       - gzip
       - helm
+      - hyprland
       - jq
+      - kitty
       - man-db
       - man-pages
-      - neovim
-      - nodejs
       - opentofu
-      - ripgrep
       - tar
       - tmux
-      - trivy
       - unzip
       - wget
       - zsh

@@ -1,0 +1,21 @@
+---
+- name: "Pre Tasks | Detect WSL"
+  ansible.builtin.shell: |
+    if [[ $(cat /proc/version | grep microsoft.*WSL) ]]; then
+      echo true
+    else
+      echo false
+    fi
+  register: env_is_wsl
+  args:
+    executable: /bin/bash
+  ignore_errors: true
+  changed_when: false
+
+- name: "Pre Tasks | Register WSL State fact"
+  ansible.builtin.set_fact:
+    env_is_wsl: "{{ env_is_wsl.stdout }}"
+
+- name: "Pre Tasks | Show WSL State"
+  ansible.builtin.debug:
+    msg: "WSL State: '{{ env_is_wsl }}'"

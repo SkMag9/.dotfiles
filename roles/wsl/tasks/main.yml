@@ -1,0 +1,8 @@
+---
+- name: "Pre Tasks | Add WSL Config" 
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/wsl.conf"
+    dest: "/etc/wsl.conf"
+    state: link
+    force: true
+

@@ -1,0 +1,13 @@
+go:
+  packages:
+    - package: mvdan.cc/gofumpt@latest
+      cmd: gofumpt 
+    - package: github.com/segmentio/golines@latest
+      cmd: golines
+    - package: github.com/incu6us/goimports-reviser/v3@latest
+      cmd: goimports-reviser
+
+npm:
+  packages:
+    - package: n
+      cmd: n
