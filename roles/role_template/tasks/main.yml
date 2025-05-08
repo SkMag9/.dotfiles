@@ -5,5 +5,5 @@
   register: distribution_config
 
 - name: "ROLE_NAME | Run Tasks: {{ ansible_distribution }}"
-  ansible "ROLE_NAME.include_tasks: "{{ ansible_distribution }}.yml"
+  ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
   when: distribution_config.stat.exists
