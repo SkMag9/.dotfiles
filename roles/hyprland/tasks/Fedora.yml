@@ -4,5 +4,22 @@
   ansible.builtin.dnf5:
     name: 
       - hyprland
+      - dolphin
       - kitty
+      - sddm-wayland-generic
+      - waybar
+      - wofi
     state: latest
+
+- name: "Hyprland | Fedora | Get Current systemd Default"
+  ansible.builtin.command: 
+    cmd: "systemctl get-default"
+  changed_when: false
+  register: systemd_default
+
+- name: "Hyprland | Fedora | Set systemd Default to graphical target"
+  become: true
+  ansible.builtin.command:
+    cmd: "systemctl set-default graphical.target"
+  when: "'graphical' not in systemd_default.stdout"
+  changed_when: true
