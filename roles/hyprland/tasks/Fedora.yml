@@ -1,0 +1,8 @@
+---
+- name: "Hyprland | Fedora | Install Hyprland Packages and Dependencies"
+  become: true
+  ansible.builtin.dnf5:
+    name: 
+      - hyprland
+      - kitty
+    state: latest

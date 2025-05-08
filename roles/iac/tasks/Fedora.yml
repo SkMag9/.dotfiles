@@ -1,0 +1,27 @@
+---
+- name: "IaC | Fedora | Install IaC Tools"
+  become: true
+  ansible.builtin.dnf5:
+    name: 
+      - helm
+      - opentofu
+
+- name: "IaC | Fedora | Install Terraform Repository Dependencies"
+  become: true
+  ansible.builtin.dnf5:
+    name: 
+      - dnf-plugins-core
+
+- name: "IaC | Fedora | Install Terraform Repository"
+  become: true
+  ansible.builtin.command:
+    cmd: "dnf config-manager addrepo --overwrite --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo"
+  register: terraform_install
+  changed_when: terraform_install.rc != 0
+
+- name: "IaC | Fedora | Install Terraform"
+  become: true
+  ansible.builtin.dnf5:
+    name:
+      - terraform
+    state: latest
