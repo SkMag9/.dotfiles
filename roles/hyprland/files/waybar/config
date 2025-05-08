@@ -1,15 +1,20 @@
 // -*- mode: jsonc -*-
 {
   "layer": "top",
-  "modules_left": [
+  "modules-left": [
     "hyprland/workspaces"
   ],
-  "modules_center": [
+  "modules-center": [
     "hyprland/window"
   ],
-  "modules_right": [],
+  "modules-right": [],
   
   // Module Config
+  "clock": {
+    "timezone": "Europe/Zurich",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}"
+  }, 
   "hyprland/workspaces": {
     "all-outputs": true,
     "format": "{name}: {icon}",
