@@ -12,6 +12,9 @@ return {
             extra_filetypes = { "dockerfile", "go", "gomod", "gowork", "gotmpl", "yaml", "yaml.ansible", "yaml.docker-compose" },
           }),
 
+          -- Ansible
+          null_ls.builtins.diagnostics.ansiblelint,
+
           -- Go
           null_ls.builtins.formatting.gofumpt,
           null_ls.builtins.formatting.goimports_reviser,
