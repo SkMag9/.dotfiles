@@ -1,0 +1,22 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top",
+  "modules_left": [
+    "hyprland/workspaces"
+  ],
+  "modules_center": [
+    "hyprland/window"
+  ],
+  "modules_right": [],
+  
+  // Module Config
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{name}: {icon}",
+    "format-icons": {
+      "active": "[x]",
+      "default": "[ ]",
+      "urgent": "[!]"
+    }
+  }
+}

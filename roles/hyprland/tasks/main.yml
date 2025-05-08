@@ -21,10 +21,28 @@
 
 - name: "Hyprland | Hyprland Config Link"
   ansible.builtin.file:
-    src: "{{ role_path }}/files"
+    src: "{{ role_path }}/files/hypr"
     dest: "{{ ansible_user_dir }}/.config/hypr"
     state: link
     force: true
 
-  
+- name: "Waybar | Remove Old Configs"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/waybar"
+    state: absent
+
+- name: "Waybar | Create Config Directory"
+  ansible.builtin.file:
+    mode: "0755"
+    path: "{{ ansible_user_dir }}/.config/waybar"
+    state: directory
+
+- name: "Waybar | Waybar Config Link"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/waybar"
+    dest: "{{ ansible_user_dir }}/.config/waybar"
+    state: link
+    force: true
+
+ 
 
