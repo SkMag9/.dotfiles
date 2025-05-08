@@ -24,9 +24,8 @@ bindkey -v
 ## Go
 export PATH="/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$PATH"
 
-## Ruby
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin/:$PATH"
+## NPM
+export PATH="$HOME/.npm/node_modules/.bin:$PATH"
 
 # Aliases
 alias la="ls -alh"
@@ -50,4 +49,4 @@ alias vd="cd $HOME/.dotfiles && v"
 source $HOME/.config/zsh/theme/theme.zsh
 
 # MOTD
-$HOME/.config/zsh/motd.sh
+#$HOME/.config/zsh/motd.sh
