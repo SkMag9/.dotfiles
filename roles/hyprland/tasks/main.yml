@@ -26,6 +26,27 @@
     state: link
     force: true
 
+- name: "SDDM | Remove Old Configs"
+  become: true
+  ansible.builtin.file:
+    path: "/etc/sddm.conf.d"
+    state: absent
+
+- name: "SDDM | Create Config Directory"
+  become: true
+  ansible.builtin.file:
+    mode: "0755"
+    path: "/etc/sddm.conf.d"
+    state: directory
+
+- name: "SDDM | SDDM Config Link"
+  become: true
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/sddm"
+    dest: "/etc/sddm.conf.d"
+    state: link
+    force: true
+
 - name: "Waybar | Remove Old Configs"
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.config/waybar"

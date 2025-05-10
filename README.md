@@ -35,4 +35,5 @@ For customized installation:
 - [ ] Lock Screen
 - [ ] Idle
 - [ ] Finalize Waybar Config
+- [ ] Fingerprint Unlock
 
