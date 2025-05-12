@@ -1,0 +1,8 @@
+---
+- name: "Custom | Fedora | Install Custom Packages"
+  become: true
+  ansible.builtin.dnf5:
+    name: "{{ item.package }}"
+  loop_control:
+    label: "{{ item.package }}"
+  loop: "{{ packages.rpm }}"

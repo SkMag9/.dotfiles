@@ -1,9 +1,47 @@
 ---
 default_roles:
   - common
-  - hyprland
-  - iac
+  - custom
+  #- hyprland
+  #- iac
   - nvim
-  - nvim_ext # Includes config and packages needed for it
+  #- nvim_ext # Includes config and packages needed for it
   #- tmux
   #- zsh
+
+settings:
+  locale:
+    lang: "en_GB.UTF-8"
+  vconsole:
+    keymap: "de_CH-latin1"
+    font: "ter-132b"
+  hostname: "skmag-arch"
+
+packages:
+  apt:
+    - package: curl
+  arch:
+    official:
+      # - package: amd-ucode # AMD Micro-Code
+      - package: intel-ucode # Intel Micro-Code
+      - package: btrfs-progs
+      - package: terminus-font
+      - package: texinfo
+      - package: neovim
+      - package: zsh
+    aur:
+      executable: yay
+      packages: 
+        - ""
+  rpm:
+    - package: curl
+  go:
+    - package: mvdan.cc/gofumpt@latest
+      cmd: gofumpt
+    - package: github.com/segmentio/golines@latest
+      cmd: golines
+    - package: github.com/incu6us/goimports-reviser/v3@latest
+      cmd: goimports-reviser
+  npm:
+    - package: n
+      cmd: n

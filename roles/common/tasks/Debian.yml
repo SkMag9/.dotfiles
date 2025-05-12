@@ -1,0 +1,25 @@
+---
+- name: "Debian | Update Packages"
+  become: true
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+
+- name: "Debian | System Setup"
+  become: true
+  ansible.builtin.apt:
+    name:
+      - curl
+      - neofetch
+      - file
+      - gzip
+      - jq
+      - man-db
+      - manpages
+      - tar
+      - tmux
+      - unzip
+      - wget
+      - zsh
+    state: latest

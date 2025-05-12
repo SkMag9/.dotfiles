@@ -1,0 +1,8 @@
+---
+- name: "NeoVim | Arch | Install NeoVim"
+  become: true
+  community.general.pacman:
+    name: 
+      - neovim
+    state: latest
+    update_cache: true

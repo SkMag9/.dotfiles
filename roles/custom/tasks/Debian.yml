@@ -1,0 +1,8 @@
+---
+- name: "Custom | Debian | Install Custom Packages"
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item.package }}"
+  loop_control:
+    label: "{{ item.package }}"
+  loop: "{{ packages.apt }}"

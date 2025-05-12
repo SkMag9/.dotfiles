@@ -1,0 +1,24 @@
+---
+- name: "Arch | Update Packages" 
+  become: true
+  community.general.pacman:
+    update_cache: true
+    upgrade: true
+
+- name: "Arch | System Setup"
+  become: true
+  community.general.pacman:
+    name:
+      - curl
+      - fastfetch
+      - file
+      - gzip
+      - jq
+      - man-db
+      - man-pages
+      - tar
+      - tmux
+      - unzip
+      - wget
+      - zsh
+    state: latest
