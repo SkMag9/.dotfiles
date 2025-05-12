@@ -12,6 +12,7 @@
       - pipewire
       - wireplumber
       - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-gtk
       - hyprpolkitagent
       - qt5-wayland
       - qt6-wayland
@@ -25,13 +26,6 @@
       - greetd-regreet
     state: latest
     update_cache: true
-
-- name: "Hyprland | Arch | Enable XDG Desktop Portal"
-  become: true
-  ansible.builtin.systemd_service:
-    name: xdg-desktop-portal-hyprland
-    state: started
-    enabled: true
 
 - name: "greetd | Arch | Link Config"
   become: true
