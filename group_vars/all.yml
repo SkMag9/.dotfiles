@@ -33,7 +33,7 @@ packages:
       enabled: false
       executable: yay
       packages: 
-        - ""
+        - package: ""
   rpm:
     - package: curl
   go:
