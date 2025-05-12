@@ -6,7 +6,6 @@
       - hyprland
       - dolphin
       - kitty
-      - sddm
       - waybar
       - wofi
     state: latest

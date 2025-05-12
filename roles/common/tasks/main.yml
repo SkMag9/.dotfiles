@@ -7,3 +7,10 @@
 - name: "Common | System Setup: {{ ansible_distribution }}"
   ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
   when: distribution_config.stat.exists
+
+- name: "Common | Enable Firewall"
+  ansible.builtin.systemd_service:
+    name: firewalld
+    state: started
+    enabled: true
+

@@ -12,6 +12,7 @@
       - curl
       - fastfetch
       - file
+      - firewalld
       - gzip
       - jq
       - man-db
