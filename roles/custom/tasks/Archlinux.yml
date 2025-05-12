@@ -19,4 +19,4 @@
   loop_control:
     label: "{{ item.package }}"
   loop: "{{ packages.arch.aur.packages }}"
-  when: "{{ packages.arch.aur.enabled }}"
+  when: "packages.arch.aur.enabled == true"
