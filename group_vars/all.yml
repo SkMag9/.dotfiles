@@ -30,6 +30,7 @@ packages:
       - package: neovim
       - package: zsh
     aur:
+      enabled: false
       executable: yay
       packages: 
         - ""
