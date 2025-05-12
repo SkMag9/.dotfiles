@@ -16,6 +16,7 @@ settings:
     keymap: "de_CH-latin1"
     font: "ter-132b"
   hostname: "skmag-arch"
+  
 
 packages:
   apt:

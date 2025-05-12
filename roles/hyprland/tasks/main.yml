@@ -8,6 +8,19 @@
   ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
   when: distribution_config.stat.exists
 
+- name: "Hyprland | Get Current systemd Default"
+  ansible.builtin.command: 
+    cmd: "systemctl get-default"
+  changed_when: false
+  register: systemd_default
+
+- name: "Hyprland | Set systemd Default to graphical target"
+  become: true
+  ansible.builtin.command:
+    cmd: "systemctl set-default graphical.target"
+  when: "'graphical' not in systemd_default.stdout"
+  changed_when: true
+
 - name: "Hyprland | Remove Old Configs"
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.config/hypr"

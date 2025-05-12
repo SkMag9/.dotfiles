@@ -1,1 +1,55 @@
 ---
+- name: "Hyprland | Arch | Install Hyprland Packages and Dependencies"
+  become: true
+  community.general.pacman:
+    name:
+      - hyprland
+      - kitty
+      - dolphin
+      - waybar
+      - rofi
+      - swaync
+      - pipewire
+      - wireplumber
+      - xdg-desktop-portal-hyprland
+      - hyprpolkitagent
+      - qt5-wayland
+      - qt6-wayland
+      - nwg-look
+      - qt5ct
+      - qt6ct
+      - hypridle
+      - hyprlock
+      - brightnessctl
+      - greetd
+      - greetd-regreet
+    state: latest
+    update_cache: true
+
+- name: "Hyprland | Arch | Enable XDG Desktop Portal"
+  become: true
+  ansible.builtin.systemd_service:
+    name: xdg-desktop-portal-hyprland
+    state: started
+    enabled: true
+
+- name: "greetd | Arch | Link Config"
+  become: true
+  ansible.builtin.file:
+    path: "/etc/greetd"
+    state: absent
+
+- name: "greetd | Arch | Create Config Directory"
+  become: true
+  ansible.builtin.file:
+    mode: "0755"
+    path: "/etc/greetd"
+    state: directory
+
+- name: "greetd | Arch | greetd Config Link"
+  become: true
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/greetd"
+    dest: "/etc/greetd"
+    state: link
+    force: true
