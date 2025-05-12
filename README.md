@@ -12,8 +12,8 @@ For default installation:
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/SkMag9/.dotfiles/refs/heads/v2.0/install.sh)"
 # Edit Files
 cd .dotfiles
-ansible-galaxy collection install -r
-ansible-playboot --ask-become-pass main.yml
+ansible-galaxy collection install -r requirements.yml
+ansible-playbook --ask-become-pass main.yml
 ```
 
 For customized installation:

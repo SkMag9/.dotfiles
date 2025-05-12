@@ -1,3 +1,4 @@
 ---
 collections:
-  - comunity.general
+  - name: comunity.general
+    source: "https://galaxy.anxible.com"
