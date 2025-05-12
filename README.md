@@ -40,4 +40,5 @@ For customized installation:
 - [ ] Idle
 - [ ] Finalize Waybar Config
 - [ ] Fingerprint Unlock
+- [ ] Greetd Permissions
 
