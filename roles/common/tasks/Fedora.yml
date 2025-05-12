@@ -16,6 +16,7 @@
       - jq
       - man-db
       - man-pages
+      - openssh
       - tar
       - tmux
       - unzip
