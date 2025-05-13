@@ -1,0 +1,22 @@
+[background]
+path = "/usr/share/hypr/wall0.png"
+fit = "Contain"
+
+[GTK]
+application_prefer_dark_theme = true
+cursor_theme_name = "Adwaita"
+font_name = "RobotoMono Nerd Font"
+icon_theme_name = "Adwaita"
+theme_name = "Awdwaita"
+
+[commands]
+reboot = ["systemctl", "reboot"]
+poweroff = ["systemctl", "poweroff"]
+
+[appearance]
+greeting_msg = "Welcome back!"
+
+[widget.clock]
+format = "%a %H:%M"
+resolutoin = "500ms"
+timezone = "Europe/Zurich"

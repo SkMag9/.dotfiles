@@ -1,0 +1,7 @@
+---
+- name: "Brave | Arch | Install Brave Browser"
+  kewlfft.aur.aur:
+    use: yay
+    name: 
+      - brave-bin
+

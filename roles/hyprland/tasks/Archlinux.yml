@@ -24,6 +24,7 @@
       - brightnessctl
       - greetd
       - greetd-regreet
+      - ttf-roboto-mono-nerd
     state: latest
     update_cache: true
 

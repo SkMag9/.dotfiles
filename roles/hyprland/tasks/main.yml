@@ -64,4 +64,23 @@
     force: true
   when: distribution_config.stat.exists
  
+- name: "KiTTY | Remove Old Configs"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/kitty"
+    state: absent
+  when: distribution_config.stat.exists
 
+- name: "KiTTY | Create Config Directory"
+  ansible.builtin.file:
+    mode: "0755"
+    path: "{{ ansible_user_dir }}/.config/kitty"
+    state: directory
+  when: distribution_config.stat.exists
+
+- name: "KiTTY | KiTTY Config Link"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/kitty"
+    dest: "{{ ansible_user_dir }}/.config/kitty"
+    state: link
+    force: true
+  when: distribution_config.stat.exists

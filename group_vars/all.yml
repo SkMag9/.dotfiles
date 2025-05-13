@@ -2,11 +2,13 @@
 default_roles:
   - common
   - custom
+  - yay # For Arch AUR
+  - brave
   - hyprland
-  #- iac
+  # - iac
   - nvim
   - nvim_ext # Includes config and packages needed for it
-  #- tmux
+  # - tmux
   - zsh
 
 settings:

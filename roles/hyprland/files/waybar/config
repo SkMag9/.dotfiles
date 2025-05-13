@@ -1,6 +1,8 @@
 // -*- mode: jsonc -*-
 {
   "layer": "top",
+  "height": 30,
+  "spacing": 4,
   "modules-left": [
     "hyprland/workspaces"
   ],
@@ -8,6 +10,7 @@
     "hyprland/window"
   ],
   "modules-right": [
+    "battery",
     "clock"
   ],
   

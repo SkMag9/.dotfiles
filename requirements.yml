@@ -1,4 +1,5 @@
 ---
 collections:
-  - name: comunity.general
+  - name: community.general
     source: "https://galaxy.anxible.com"
+  - name: kewlfft.aur

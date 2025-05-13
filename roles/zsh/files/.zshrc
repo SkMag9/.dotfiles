@@ -42,6 +42,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 
+alias waybar-reload="pkill waybar && hyprctl dispatch exec waybar"
 
 alias vd="cd $HOME/.dotfiles && v"
 # Plugins
