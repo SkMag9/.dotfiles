@@ -15,7 +15,7 @@ export SAVEHIST=5000
 setopt EXTENDED_HISTORY
 setopt INC_APPEND_HISTORY
 
-alias history="history -i"
+alias history="history -i 0"
 
 # Line edit behaviour = vim
 bindkey -v
