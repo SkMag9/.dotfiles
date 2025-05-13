@@ -1,0 +1,7 @@
+--- 
+- name: "zsh | Fedora | Install Packages"
+  become: true
+  ansible.builtin.dnf5:
+    name: 
+      - zsh
+    state: latest

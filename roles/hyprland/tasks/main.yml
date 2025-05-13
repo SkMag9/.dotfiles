@@ -13,24 +13,27 @@
     cmd: "systemctl get-default"
   changed_when: false
   register: systemd_default
+  when: distribution_config.stat.exists
 
 - name: "Hyprland | Set systemd Default to graphical target"
   become: true
   ansible.builtin.command:
     cmd: "systemctl set-default graphical.target"
-  when: "'graphical' not in systemd_default.stdout"
+  when: "'graphical' not in systemd_default.stdout and distribution_config.stat.exists" 
   changed_when: true
 
 - name: "Hyprland | Remove Old Configs"
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.config/hypr"
     state: absent
+  when: distribution_config.stat.exists
 
 - name: "Hyprland | Create Config Directory"
   ansible.builtin.file:
     mode: "0755"
     path: "{{ ansible_user_dir }}/.config/hypr"
     state: directory
+  when: distribution_config.stat.exists
 
 - name: "Hyprland | Hyprland Config Link"
   ansible.builtin.file:
@@ -38,17 +41,20 @@
     dest: "{{ ansible_user_dir }}/.config/hypr"
     state: link
     force: true
+  when: distribution_config.stat.exists
 
 - name: "Waybar | Remove Old Configs"
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.config/waybar"
     state: absent
+  when: distribution_config.stat.exists
 
 - name: "Waybar | Create Config Directory"
   ansible.builtin.file:
     mode: "0755"
     path: "{{ ansible_user_dir }}/.config/waybar"
     state: directory
+  when: distribution_config.stat.exists
 
 - name: "Waybar | Waybar Config Link"
   ansible.builtin.file:
@@ -56,6 +62,6 @@
     dest: "{{ ansible_user_dir }}/.config/waybar"
     state: link
     force: true
-
+  when: distribution_config.stat.exists
  
 

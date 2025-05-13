@@ -19,8 +19,6 @@
       - manpages
       - openssh
       - tar
-      - tmux
       - unzip
       - wget
-      - zsh
     state: latest

@@ -7,7 +7,7 @@ default_roles:
   - nvim
   - nvim_ext # Includes config and packages needed for it
   #- tmux
-  #- zsh
+  - zsh
 
 settings:
   locale:

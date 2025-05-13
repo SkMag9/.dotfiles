@@ -7,3 +7,39 @@
 - name: "zsh | Run Tasks: {{ ansible_distribution }}"
   ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
   when: distribution_config.stat.exists
+
+- name: "zsh | Delete Old Configs Directory"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/zsh"
+    state: absent
+  when: distribution_config.stat.exists
+
+- name: "zsh | Delete Old .zshrc file"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    state: absent
+  when: distribution_config.stat.exists
+
+- name: "zsh | Create Config Directory"
+  ansible.builtin.file:
+    mode: "0755"
+    path: "{{ ansible_user_dir }}/.config/zsh"
+    state: directory
+  when: distribution_config.stat.exists
+
+- name: "zsh | zsh Config Link"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/config"
+    dest: "{{ ansible_user_dir }}/.config/zsh"
+    state: link
+    force: true
+  when: distribution_config.stat.exists
+
+- name: "zsh | zshrc Config Link"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.zshrc"
+    dest: "{{ ansible_user_dir }}/.zshrc"
+    state: link
+    force: true
+  when: distribution_config.stat.exists
+

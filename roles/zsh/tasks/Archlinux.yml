@@ -1,0 +1,8 @@
+---
+- name: "zsh | Arch | Install Packages"
+  become: true
+  community.general.pacman:
+    name:
+      - zsh
+    state: latest
+    update_cache: true
