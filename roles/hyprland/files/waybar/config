@@ -1,8 +1,8 @@
 // -*- mode: jsonc -*-
 {
   "layer": "top",
-  "height": 30,
-  "spacing": 4,
+  "height": 10,
+  "spacing": 5,
   "modules-left": [
     "hyprland/workspaces"
   ],
@@ -10,23 +10,27 @@
     "hyprland/window"
   ],
   "modules-right": [
+    "idle_inhibitor",
     "backlight",
     "battery",
-    "clock"
+    "clock",
+    "group/group-power"
   ],
   
   // Module Config
   "backlight": {
-    "format": "{icon} {percent}%",
+    "format": "[{icon} {percent}%]",
     "format-icons": [
       "\udb80\udcde",
       "\udb80\udcdf",
       "\udb80\udcdf",
       "\udb80\udce0"
-    ]
+    ],
+    "tooltip": true,
+    "tooltip-format": "Scroll to change brightness"
   },
   "battery": {
-    "format": "{icon} {capacity}%",
+    "format": "[{icon} {capacity}%]",
     "states": {
       "warning": 30,
       "critical": 15
@@ -56,12 +60,11 @@
         "\udb82\udc9e",
         "\udb80\udc8a",
         "\udb80\udc8b",
-        "\udb80\udc85",
+        "\udb80\udc85"
       ],
       "full": "\udb80\udc85",
-      "default": "\udb80\udc85",
+      "default": "\udb80\udc85"
     },
-    "interval": 1,
     "format-time": "{H}h {M}min",
     "tooltip": true,
     "tooltip-format": "{timeTo}\nBattery Health: {health}%"
@@ -69,16 +72,63 @@
   "clock": {
     "timezone": "Europe/Zurich",
     "format": "[{:%H:%M}]",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
     "format-alt": "{:%Y-%m-%d}"
-  }, 
+  },
+  "custom/power": {
+    "format": "[{icon}]",
+    "format-icons": ["\udb81\udc25"],
+    "tooltip": true,
+    "tooltip-format": "Power Options"
+  },
+  "custom/poweroff": {
+    "format": "[{icon}]",
+    "format-icons": ["\udb81\udc25"],
+    "tooltip": true,
+    "tooltip-format": "Power Off",
+    "on-click": "systemctl poweroff"
+  },
+  "custom/reboot": {
+    "format": "[{icon}]",
+    "format-icons": ["\udb81\udf09"],
+    "tooltip": true,
+    "tooltip-format": "reboot",
+    "on-click": "systemctl reboot"
+  },
+  "group/group-power": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false,
+      "children-class": "power-children",
+      "click-to-reveal": true
+    },
+    "modules": [
+      "custom/power", // Leader
+      "custom/quit",
+      "custom/lock",
+      "custom/reboot",
+      "custom/poweroff"
+    ]
+  },
   "hyprland/workspaces": {
     "all-outputs": true,
-    "format": "{name}: {icon}",
+    "format": "{name}:{icon}",
     "format-icons": {
       "active": "[x]",
       "default": "[ ]",
       "urgent": "[!]"
     }
+  },
+  "idle_inhibitor": {
+    "format": "[{icon}]",
+    "format-icons": {
+      "activated": "\udb80\ude08",
+      "deactivated": "\udb80\ude09"
+    },
+    "timeout": 15, // Minutes
+    "tooltip": true,
+    "tooltip-format-activated": "Idle Inhibitor: {status}",
+    "tooltip-format-deactivated": "Idle Inhibitor: {status}"
   }
 }
