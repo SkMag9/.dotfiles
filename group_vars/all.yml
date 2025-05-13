@@ -5,7 +5,7 @@ default_roles:
   - hyprland
   #- iac
   - nvim
-  #- nvim_ext # Includes config and packages needed for it
+  - nvim_ext # Includes config and packages needed for it
   #- tmux
   #- zsh
 

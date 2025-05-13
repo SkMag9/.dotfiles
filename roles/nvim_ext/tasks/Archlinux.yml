@@ -1,0 +1,13 @@
+---
+- name: "NeoVim Ext | Arch | Install Packages"
+  become: true
+  community.general.pacman:
+    name:
+      - ansible-lint
+      - gcc
+      - go
+      - npm
+      - ripgrep
+      - trivy
+    state: latest
+    update_cache: true
