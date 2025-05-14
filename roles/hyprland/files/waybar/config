@@ -6,12 +6,15 @@
   "modules-left": [
     "hyprland/workspaces"
   ],
-  "modules-center": [],
+  "modules-center": [
+    "clock"
+  ],
   "modules-right": [
     "idle_inhibitor",
-    "backlight",
+    "power-profiles-daemon",
+    "tray",
     "battery",
-    "clock",
+    "backlight",
     "group/group-power"
   ],
   
@@ -112,7 +115,7 @@
     "drawer": {
       "transition-duration": 500,
       "transition-left-to-right": false,
-      "children-class": "power-children",
+      "children-class": "custom-power_menu_item",
       "click-to-reveal": true
     },
     "modules": [
@@ -125,12 +128,7 @@
   },
   "hyprland/workspaces": {
     "all-outputs": true,
-    "format": "{icon}",
-    "format-icons": {
-      "active": "\udb81\udc3e",
-      "default": "\udb80\udd30",
-      "urgent": "\udb81\uddd6"
-    }
+    "format": "[{name}]"
   },
   "idle_inhibitor": {
     "format": "[{icon}]",
@@ -142,5 +140,15 @@
     "tooltip": true,
     "tooltip-format-activated": "Idle Inhibitor: {status}",
     "tooltip-format-deactivated": "Idle Inhibitor: {status}"
+  },
+  "power-profiles-daemon": {
+    "format": "[{icon}]",
+    "format-icons": {
+      "power-saver": "\udb80\udf2a",
+      "balanced": "\udb81\uddd1",
+      "performance": "\udb85\udc0b"
+    },
+    "tooltip": true,
+    "tooltip-format": "Power Profile: {profile}"
   }
 }

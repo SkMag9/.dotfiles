@@ -1,10 +1,10 @@
 ---
 default_roles:
   - common
-  #- custom
+  - custom
   #- yay # For Arch AUR
   # - brave
-  # - hyprland
+  - hyprland
   # - iac
   # - nvim
   # - nvim_ext # Includes config and packages needed for it
@@ -31,9 +31,6 @@ packages:
       - package: intel-ucode # Intel Micro-Code
       - package: btrfs-progs
       - package: terminus-font
-      - package: texinfo
-      - package: neovim
-      - package: zsh
     aur:
       enabled: false
       executable: yay

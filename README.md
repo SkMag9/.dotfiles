@@ -41,4 +41,4 @@ For customized installation:
 - [ ] Finalize Waybar Config
 - [ ] Fingerprint Unlock
 - [ ] Greetd Permissions
-
+- [ ] Rofi Power Menu

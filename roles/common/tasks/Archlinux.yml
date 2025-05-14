@@ -18,6 +18,7 @@
       - man-db
       - man-pages
       - openssh
+      - power-profiles-daemon
       - tar
       - unzip
       - usbutils
@@ -52,3 +53,9 @@
     line: 'auth      sufficient   pam_fprintd.so'
   when: settings.hardware.fingerprint_reader
 
+- name: "Arch | Enable power-profile-daemon"
+  become: true
+  ansible.builtin.systemd_service:
+    name: power-profiles-daemon
+    state: started
+    enabled: true

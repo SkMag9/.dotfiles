@@ -1,17 +1,17 @@
 /*
 * General Config
 */
+@import "catppuccin-mocha.css";
 
 * {
   font-family: "RobotoMono Nerd Font Propo", FontAwesome, sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  min-height: 0;
-  color: #ffffff;
 }
 
 window#waybar {
   all: unset;
+  background: transparent;
 }
 
 window#waybar.empty #window {
@@ -21,39 +21,95 @@ window#waybar.empty #window {
 .modules-left,
 .modules-center,
 .modules-right {
-  border-radius: 5px;
-  margin: 0 5px;
-  padding: 0 5px;
-  background-color: red;
-}
-
-label.module,
-label.module * {
-  background-color: #ff8800;
-  padding: 0 0.5em;
-}
-
-box.module,
-box.module * {
-  background-color: #0088ff;
-  padding: 0;
+  margin: 0 10px;
 }
 
 /*
 * General Tweaks
 */
-.modules-left>widget:first-child>#workspaces {
-  margin-left: 0;
-}
-
-.modules-right>widget:last-child>#workspaces {
-  margin-right: 0;
-}
 
 /*
 * Modules
 */
 
+/* Backlight */
+#backlight {
+  color: @yellow;
+}
+
+/* Battery */
+#battery {
+  color: @text;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#battery.warning {
+  color: @peach;
+}
+
+window#waybar.battery-warning {
+  /* Peach, with opacity */
+  background-color: rgba(250, 179, 135, 0.2);
+}
+
+#battery.critical {
+  color: @red;
+}
+
+window#waybar.battery-critical {
+  /* Red with opacity */
+  background-color: rgba(243, 139, 168, 0.2);
+}
+
+/* Clock */
+#clock {
+  color: @text;
+}
+
+/* Custom/Power-Menu */
+#custom-power_menu {
+  color: @red;
+}
+
+.custom-power_menu_item {
+  color: @text;
+}
+
+/* Idle Inhibitor */
+#idle_inhibitor.activated {
+  color: @blue;
+}
+
+#idle_inhibitor.deactivated {
+  color: @overlay1;
+}
+
+/* Power Profiles Daemon */
+#power-profiles-daemon.power-saver {
+  color: @green;
+}
+
+#power-profiles-daemon.balanced {
+  color: @blue;
+}
+
+#power-profiles-daemon.performance {
+  color: @red;
+}
+
+/* Workspaces */
 #workspaces button {
   padding: 0;
+  color: @overlay0;
+}
+
+#workspaces button.active {
+  color: @green;
+}
+
+#workspaces button.urgent {
+  color: @red;
 }
