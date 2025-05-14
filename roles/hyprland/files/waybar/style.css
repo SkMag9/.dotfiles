@@ -50,7 +50,7 @@ window#waybar {
 
 window#waybar.battery-warning {
   /* Peach, with opacity */
-  background-color: rgba(250, 179, 135, 0.2);
+  background-color: rgba(250, 179, 135, 0.5);
 }
 
 #battery.critical {

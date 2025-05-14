@@ -31,14 +31,18 @@ For customized installation:
 ## ToDo
 
 - [ ] Screen shot utility
-- [ ] Notifications
-- [ ] Pipewire + wireplumber
-- [ ] XDG Desktop Portal
-- [ ] Authentication Agent
+- [x] Notifications
+- [x] Pipewire + wireplumber
+- [x] XDG Desktop Portal
+- [x] Authentication Agent
 - [ ] Qt Wayland Support
-- [ ] Lock Screen
-- [ ] Idle
-- [ ] Finalize Waybar Config
+- [x] Lock Screen
+- [x] Idle
+- [x] Finalize Waybar Config
 - [ ] Fingerprint Unlock
 - [ ] Greetd Permissions
 - [ ] Rofi Power Menu
+- [x] Rofi Theme
+- [ ] Fingerprint Issue after closing laptop lid
+- [ ] System behaviour on power button and laptop lid
+- [x] Check WebRC
