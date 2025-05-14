@@ -1,9 +1,13 @@
+/*
+* General Config
+*/
+
 * {
   font-family: "RobotoMono Nerd Font Propo", FontAwesome, sans-serif;
   font-size: 16px;
   font-weight: bold;
   min-height: 0;
-  color: white;
+  color: #ffffff;
 }
 
 window#waybar {
@@ -14,19 +18,42 @@ window#waybar.empty #window {
   background-color: transparent;
 }
 
-label.module,
-box.module {
+.modules-left,
+.modules-center,
+.modules-right {
   border-radius: 5px;
+  margin: 0 5px;
+  padding: 0 5px;
+  background-color: red;
 }
 
-label.module {
+label.module,
+label.module * {
   background-color: #ff8800;
   padding: 0 0.5em;
-  /*min-width: 2em;*/
 }
 
-box.module {
+box.module,
+box.module * {
   background-color: #0088ff;
   padding: 0;
 }
 
+/*
+* General Tweaks
+*/
+.modules-left>widget:first-child>#workspaces {
+  margin-left: 0;
+}
+
+.modules-right>widget:last-child>#workspaces {
+  margin-right: 0;
+}
+
+/*
+* Modules
+*/
+
+#workspaces button {
+  padding: 0;
+}

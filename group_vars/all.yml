@@ -1,15 +1,15 @@
 ---
 default_roles:
   - common
-  - custom
-  - yay # For Arch AUR
-  - brave
-  - hyprland
+  #- custom
+  #- yay # For Arch AUR
+  # - brave
+  # - hyprland
   # - iac
-  - nvim
-  - nvim_ext # Includes config and packages needed for it
+  # - nvim
+  # - nvim_ext # Includes config and packages needed for it
   # - tmux
-  - zsh
+  # - zsh
 
 settings:
   locale:
@@ -18,6 +18,8 @@ settings:
     keymap: "de_CH-latin1"
     font: "ter-132b"
   hostname: "skmag-arch"
+  hardware:
+    fingerprint_reader: true
   
 
 packages:

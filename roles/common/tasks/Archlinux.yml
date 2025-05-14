@@ -20,5 +20,35 @@
       - openssh
       - tar
       - unzip
+      - usbutils
       - wget
     state: latest
+    update_cache: true
+
+- name: "Arch | Fingerprint Setup"
+  become: true
+  community.general.pacman:
+    name:
+      - fprintd
+    state: latest
+    update_cache: true
+  when: settings.hardware.fingerprint_reader
+
+- name: "Arch | Fingerpring disallow for sudo"
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/pam.d/system-local-login
+    regexp: '^auth.*success.*pam_succeed_if\.so.*$'
+    insertbefore: '^auth.*include.*system-login$'
+    line: 'auth      [success=1 default=ignore] pam_succeed_if.so   service in sudo:su:su-l tty in :unknown'
+  when: settings.hardware.fingerprint_reader
+
+- name: "Arch | Fingerprint Allow"
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/pam.d/system-local-login
+    regexp: '^auth.*sufficient.*pam_fprintd.so$'
+    insertbefore: '^auth.*include.*system-login$'
+    line: 'auth      sufficient   pam_fprintd.so'
+  when: settings.hardware.fingerprint_reader
+

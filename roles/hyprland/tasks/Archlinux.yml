@@ -25,6 +25,7 @@
       - greetd
       - greetd-regreet
       - ttf-roboto-mono-nerd
+      - hyprpaper
     state: latest
     update_cache: true
 

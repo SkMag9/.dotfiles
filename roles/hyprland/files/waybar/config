@@ -1,14 +1,12 @@
+// vim:filetype=jsonc
 // -*- mode: jsonc -*-
 {
   "layer": "top",
   "height": 10,
-  "spacing": 5,
   "modules-left": [
     "hyprland/workspaces"
   ],
-  "modules-center": [
-    "hyprland/window"
-  ],
+  "modules-center": [],
   "modules-right": [
     "idle_inhibitor",
     "backlight",
@@ -75,7 +73,14 @@
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
     "format-alt": "{:%Y-%m-%d}"
   },
-  "custom/power": {
+  "custom/lock": {
+    "format": "[{icon}]",
+    "format-icons": ["\udb80\udf3e"],
+    "tooltip": true,
+    "tooltip-format": "Lock Screen",
+    "on-click": "loginctl lock-session"
+  },
+  "custom/power_menu": {
     "format": "[{icon}]",
     "format-icons": ["\udb81\udc25"],
     "tooltip": true,
@@ -95,6 +100,13 @@
     "tooltip-format": "reboot",
     "on-click": "systemctl reboot"
   },
+  "custom/quit": {
+    "format": "[{icon}]",
+    "format-icons": ["\udb80\udf43"],
+    "tooltip": true,
+    "tooltip-format": "Quit Hyprland",
+    "on-click": "hyprctl dispatch exit"
+  },
   "group/group-power": {
     "orientation": "inherit",
     "drawer": {
@@ -104,7 +116,7 @@
       "click-to-reveal": true
     },
     "modules": [
-      "custom/power", // Leader
+      "custom/power_menu", // Leader
       "custom/quit",
       "custom/lock",
       "custom/reboot",
@@ -113,11 +125,11 @@
   },
   "hyprland/workspaces": {
     "all-outputs": true,
-    "format": "{name}:{icon}",
+    "format": "{icon}",
     "format-icons": {
-      "active": "[x]",
-      "default": "[ ]",
-      "urgent": "[!]"
+      "active": "\udb81\udc3e",
+      "default": "\udb80\udd30",
+      "urgent": "\udb81\uddd6"
     }
   },
   "idle_inhibitor": {
