@@ -7,14 +7,15 @@
     "hyprland/workspaces"
   ],
   "modules-center": [
-    "clock"
+    "idle_inhibitor",
+    "clock",
+    "power-profiles-daemon"
   ],
   "modules-right": [
-    "idle_inhibitor",
-    "power-profiles-daemon",
-    "tray",
-    "battery",
+    "bluetooth",
+    "wireplumber",
     "backlight",
+    "battery",
     "group/group-power"
   ],
   
@@ -27,8 +28,9 @@
       "\udb80\udcdf",
       "\udb80\udce0"
     ],
+    "scroll-step": 2.0,
     "tooltip": true,
-    "tooltip-format": "Scroll to change brightness"
+    "tooltip-format": "Brightness"
   },
   "battery": {
     "format": "[{icon} {capacity}%]",
@@ -69,6 +71,20 @@
     "format-time": "{H}h {M}min",
     "tooltip": true,
     "tooltip-format": "{timeTo}\nBattery Health: {health}%"
+  },
+  "bluetooth": {
+    "format": "[?]",
+    "format-disabled": "[\udb80\udcb2]",
+    "format-off": "[\udb80\udcb2]",
+    "format-on": "[\udb80\udcaf]",
+    "format-connected": "[\udb80\udcb1]",
+    "format-connected-battery": "[\udb82\udd48 {device_battery_percentage}%]",
+    "on-click": "blueman-manager",
+    "tooltip": true,
+    "tooltip-format": "{controller_alias}",
+    "tooltip-format-connected": "Device Name: {controller_alias}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%"
   },
   "clock": {
     "timezone": "Europe/Zurich",
@@ -150,5 +166,14 @@
     },
     "tooltip": true,
     "tooltip-format": "Power Profile: {profile}"
+  },
+  "wireplumber": {
+    "format": "[{icon} {volume}%]",
+    "format-icons": ["\udb81\udd7f", "\udb81\udd80", "\udb81\udd80", "\udb81\udd7e"],
+    "format-muted": "\udb81\udf5f",
+    "on-click": "pwvucontrol",
+    "scroll-step": 5.0,
+    "tooltip": true,
+    "tooltip-format": "Sound"
   }
 }

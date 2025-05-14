@@ -1,5 +1,5 @@
 ---
-- name: "Arch | Update Packages" 
+- name: "Arch | Update Packages"
   become: true
   community.general.pacman:
     update_cache: true
@@ -26,6 +26,14 @@
     state: latest
     update_cache: true
 
+- name: "Arch | Enable power-profile-daemon"
+  become: true
+  ansible.builtin.systemd_service:
+    name: power-profiles-daemon
+    state: started
+    enabled: true
+
+# Hardware Specific
 - name: "Arch | Fingerprint Setup"
   become: true
   community.general.pacman:
@@ -40,22 +48,72 @@
   ansible.builtin.lineinfile:
     path: /etc/pam.d/system-local-login
     regexp: '^auth.*success.*pam_succeed_if\.so.*$'
-    insertbefore: '^auth.*include.*system-login$'
-    line: 'auth      [success=1 default=ignore] pam_succeed_if.so   service in sudo:su:su-l tty in :unknown'
+    insertbefore: "^auth.*include.*system-login$"
+    line: "auth      [success=1 default=ignore] pam_succeed_if.so   service in sudo:su:su-l tty in :unknown"
   when: settings.hardware.fingerprint_reader
 
 - name: "Arch | Fingerprint Allow"
   become: true
   ansible.builtin.lineinfile:
     path: /etc/pam.d/system-local-login
-    regexp: '^auth.*sufficient.*pam_fprintd.so$'
-    insertbefore: '^auth.*include.*system-login$'
-    line: 'auth      sufficient   pam_fprintd.so'
+    regexp: "^auth.*sufficient.*pam_fprintd.so$"
+    insertbefore: "^auth.*include.*system-login$"
+    line: "auth      sufficient   pam_fprintd.so"
   when: settings.hardware.fingerprint_reader
 
-- name: "Arch | Enable power-profile-daemon"
+- name: "Arch | Sound Setup"
+  become: true
+  community.general.pacman:
+    name:
+      - sof-firmware
+      - alsa-lib
+      - alsa-utils
+      - pipewire
+      - pipewire-alsa
+      - pipewire-audio
+      - pipewire-docs
+      - pipewire-pulse
+      - wireplumber
+    state: latest
+    update_cache: true
+  when: settings.hardware.sound
+
+- name: "Arch | Sound AUR Packages"
+  community.general.pacman:
+    name: 
+      - pwvucontrol
+    state: latest
+    update_cache: true
+    executable: "{{ packages.arch.aur.executable }}"
+    extra_args: "--builddir /var/cache/{{ packages.arch.aur.executable }}"
+  when: 
+    - packages.arch.aur.enabled
+    - settings.hardware.sound 
+
+- name: "Arch | Accelerometer Setup"
+  become: true
+  community.general.pacman:
+    name:
+      - iio-sensor-proxy
+    state: latest
+    update_cache: true
+  when: settings.hardware.accelerometer
+
+- name: "Arch | Bluetooth Setup"
+  become: true
+  community.general.pacman:
+    name:
+      - bluez
+      - bluez-utils
+      - blueman
+    state: latest
+    update_cache: true
+  when: settings.hardware.bluetooth
+
+- name: "Arch | Enable Bluetooth Service"
   become: true
   ansible.builtin.systemd_service:
-    name: power-profiles-daemon
+    name: bluetooth
     state: started
     enabled: true
+  when: settings.hardware.bluetooth

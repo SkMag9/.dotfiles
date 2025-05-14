@@ -22,15 +22,6 @@ window#waybar {
   background-color: @base;
 }
 
-/* .modules-left, */
-/* .modules-center, */
-/* .modules-right { */
-/*   border-radius: 10px; */
-/*   border-width: 1px; */
-/*   border-style: solid; */
-/*   border-color: @overlay0; */
-/* } */
-
 /*
 * General Tweaks
 */
@@ -71,6 +62,18 @@ window#waybar.battery-critical {
   background-color: rgba(243, 139, 168, 0.2);
 }
 
+/* Bluetooth */
+#bluetooth.disabled,
+#bluetooth.off {
+  color: @overlay1;
+}
+
+#bluetooth.on,
+#bluetooth.connected,
+#bluetooth.connected-battery {
+  color: @blue;
+}
+
 /* Clock */
 #clock {
   color: @text;
@@ -105,6 +108,11 @@ window#waybar.battery-critical {
 
 #power-profiles-daemon.performance {
   color: @red;
+}
+
+/* Wireplumber */
+#wireplumber {
+  color: @text;
 }
 
 /* Workspaces */

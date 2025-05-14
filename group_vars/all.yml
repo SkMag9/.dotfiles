@@ -20,8 +20,10 @@ settings:
   hostname: "skmag-arch"
   hardware:
     fingerprint_reader: true
+    sound: true
+    accelerometer: true
+    bluetooth: true
   
-
 packages:
   apt:
     - package: curl
