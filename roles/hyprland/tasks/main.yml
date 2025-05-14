@@ -84,3 +84,49 @@
     state: link
     force: true
   when: distribution_config.stat.exists
+
+- name: "greetd | Link Config"
+  become: true
+  ansible.builtin.file:
+    path: "/etc/greetd"
+    state: absent
+
+- name: "greetd | Create Config Directory"
+  become: true
+  ansible.builtin.file:
+    mode: "0755"
+    path: "/etc/greetd"
+    state: directory
+
+- name: "greetd | greetd Config Link"
+  become: true
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/greetd"
+    dest: "/etc/greetd"
+    state: link
+    force: true
+
+- name: "greetd | Enable greetd Service"
+  become: true
+  ansible.builtin.systemd_service:
+    name: greetd
+    state: started
+    enabled: true
+
+- name: "rofi | Link Config"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/rofi"
+    state: absent
+
+- name: "rofi | Create Config Directory"
+  ansible.builtin.file:
+    mode: "0755"
+    path: "{{ ansible_user_dir }}/.config/rofi"
+    state: directory
+
+- name: "rofi | rofi Config Link"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/rofi"
+    dest: "{{ ansible_user_dir }}/.config/rofi"
+    state: link
+    force: true

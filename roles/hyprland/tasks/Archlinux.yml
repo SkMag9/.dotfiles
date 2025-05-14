@@ -29,30 +29,3 @@
     state: latest
     update_cache: true
 
-- name: "greetd | Arch | Link Config"
-  become: true
-  ansible.builtin.file:
-    path: "/etc/greetd"
-    state: absent
-
-- name: "greetd | Arch | Create Config Directory"
-  become: true
-  ansible.builtin.file:
-    mode: "0755"
-    path: "/etc/greetd"
-    state: directory
-
-- name: "greetd | Arch | greetd Config Link"
-  become: true
-  ansible.builtin.file:
-    src: "{{ role_path }}/files/greetd"
-    dest: "/etc/greetd"
-    state: link
-    force: true
-
-- name: "greetd | Arch | Enable greetd Service"
-  become: true
-  ansible.builtin.systemd_service:
-    name: greetd
-    state: started
-    enabled: true
