@@ -11,18 +11,25 @@
 
 window#waybar {
   all: unset;
-  background: transparent;
-}
-
-window#waybar.empty #window {
-  background-color: transparent;
 }
 
 .modules-left,
 .modules-center,
 .modules-right {
-  margin: 0 10px;
+  margin: 5px 10px;
+  padding: 0 10px;
+  border-radius: 50px;
+  background-color: @base;
 }
+
+/* .modules-left, */
+/* .modules-center, */
+/* .modules-right { */
+/*   border-radius: 10px; */
+/*   border-width: 1px; */
+/*   border-style: solid; */
+/*   border-color: @overlay0; */
+/* } */
 
 /*
 * General Tweaks

@@ -2,7 +2,7 @@
 default_roles:
   - common
   - custom
-  #- yay # For Arch AUR
+  # - yay # For Arch AUR
   # - brave
   - hyprland
   # - iac
@@ -35,7 +35,7 @@ packages:
       enabled: false
       executable: yay
       packages: 
-        - package: ""
+        - package: catppuccin-gtk-theme-mocha
   rpm:
     - package: curl
   go:

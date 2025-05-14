@@ -1,13 +1,13 @@
 [background]
-path = "/usr/share/hypr/wall0.png"
-fit = "Contain"
+path = "/home/skmag9/.config/hypr/wallpapers/forrest.png"
+fit = "Cover"
 
 [GTK]
 application_prefer_dark_theme = true
 cursor_theme_name = "Adwaita"
 font_name = "RobotoMono Nerd Font Mono"
 icon_theme_name = "Adwaita"
-theme_name = "Awdwaita"
+theme_name = "catppuccin-mocha-blue-standard+default"
 
 [commands]
 reboot = ["systemctl", "reboot"]
