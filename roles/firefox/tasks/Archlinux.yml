@@ -1,0 +1,8 @@
+---
+- name: "Firefox | Install Firefox"
+  become: true
+  community.general.pacman:
+    name: 
+      - firefox
+    state: latest
+    update_cache: true

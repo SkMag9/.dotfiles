@@ -3,8 +3,9 @@ default_roles:
   - common
   - custom
   # - yay # For Arch AUR
-  # - brave
-  - hyprland
+  - brave
+  - firefox
+  # - hyprland
   # - iac
   # - nvim
   # - nvim_ext # Includes config and packages needed for it

@@ -1,7 +1,12 @@
 ---
 - name: "Brave | Arch | Install Brave Browser"
-  kewlfft.aur.aur:
-    use: yay
+  become: true
+  become_user: aur_helper
+  community.general.pacman:
     name: 
       - brave-bin
-
+    state: latest
+    update_cache: true
+    executable: yay
+    extra_args: "--builddir /var/cache/{{ packages.arch.aur.executable }}"
+  when: "packages.arch.aur.enabled == true"

@@ -10,6 +10,8 @@
   loop: "{{ packages.arch.official }}"
 
 - name: "Custom | Arch | Install Custom AUR Packages"
+  become: true
+  become_user: aur_builder
   community.general.pacman:
     name: "{{ item.package }}"
     state: latest
