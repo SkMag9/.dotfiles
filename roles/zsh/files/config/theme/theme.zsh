@@ -120,6 +120,6 @@ zsh_prompt_git_prompt() {
 ###### RESULT ######
 setopt PROMPT_SUBST
 PROMPT='${PROMPT_OS}$(get_path)$(zsh_prompt_git_prompt) '
-RPROMPT="$(echo "%K{default}%F{white}\ue0b2%f%k")$(zsh_prompt_color_wrapper white black "%*")"
+#RPROMPT="$(echo "%K{default}%F{white}\ue0b2%f%k")$(zsh_prompt_color_wrapper white black "%*")"
 
 

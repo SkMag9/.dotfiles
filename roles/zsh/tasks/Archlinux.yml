@@ -4,5 +4,6 @@
   community.general.pacman:
     name:
       - zsh
+      - fzf
     state: latest
     update_cache: true
