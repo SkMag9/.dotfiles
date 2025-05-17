@@ -11,14 +11,14 @@
 
 - name: "Custom | Arch | Install Custom AUR Packages"
   become: true
-  become_user: aur_builder
-  community.general.pacman:
+  become_user: "{{ packages.arch.aur.user }}" 
+  kewlfft.aur.aur:
+    use: "{{ packages.arch.aur.executable }}"
+    extra_args: "--builddir /var/cache/{{ packages.arch.aur.executable }}"
     name: "{{ item.package }}"
     state: latest
     update_cache: true
-    executable: "{{ packages.arch.aur.executable }}"
-    extra_args: "--builddir /var/cache/{{ packages.arch.aur.executable }}"
   loop_control:
     label: "{{ item.package }}"
   loop: "{{ packages.arch.aur.packages }}"
-  when: "packages.arch.aur.enabled == true"
+  when: packages.arch.aur.enabled

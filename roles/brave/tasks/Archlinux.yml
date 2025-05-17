@@ -1,12 +1,20 @@
 ---
 - name: "Brave | Arch | Install Brave Browser"
   become: true
-  become_user: aur_helper
-  community.general.pacman:
+  become_user: "{{ packages.arch.aur.user }}"
+  kewlfft.aur.aur:
+    use: "{{ packages.arch.aur.executable }}"
+    extra_args: "--builddir /var/cache/{{ packages.arch.aur.executable }}"
     name: 
       - brave-bin
     state: latest
     update_cache: true
-    executable: yay
-    extra_args: "--builddir /var/cache/{{ packages.arch.aur.executable }}"
-  when: "packages.arch.aur.enabled == true"
+  when: packages.arch.aur.enabled
+
+- name: "Brave | Arch | Disable KWallet Dependency"
+  become: true
+  ansible.builtin.lineinfile:
+    path: "/usr/share/applications/brave-browser.desktop"
+    line: "Exec=brave %U --password-store=basic"
+    regexp: "^Exec=brave %U"
+  when: packages.arch.aur.enabled

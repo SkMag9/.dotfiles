@@ -2,15 +2,15 @@
 default_roles:
   - common
   - custom
-  # - yay # For Arch AUR
+  - yay # For Arch AUR
   - brave
   - firefox
-  # - hyprland
+  - hyprland
   # - iac
-  # - nvim
-  # - nvim_ext # Includes config and packages needed for it
+  - nvim
+  - nvim_ext # Includes config and packages needed for it
   # - tmux
-  # - zsh
+  - zsh
 
 settings:
   locale:
@@ -35,8 +35,9 @@ packages:
       - package: btrfs-progs
       - package: terminus-font
     aur:
-      enabled: false
+      enabled: true
       executable: yay
+      user: aur_builder
       packages: 
         - package: catppuccin-gtk-theme-mocha
   rpm:

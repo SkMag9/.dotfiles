@@ -5,6 +5,16 @@
     update_cache: true
     upgrade: true
 
+- name: "Arch | Update AUR Packages"
+  become: true
+  become_user: "{{ packages.arch.aur.user }}"
+  kewlfft.aur.aur:
+    use: "{{ packages.arch.aur.executable }}"
+    extra_args: "--builddir /var/cache/{{ packages.arch.aur.executable }}"
+    upgrade: true
+    aur_only: true
+  when: packages.arch.aur.enabled
+
 - name: "Arch | System Setup"
   become: true
   community.general.pacman:
@@ -79,13 +89,13 @@
   when: settings.hardware.sound
 
 - name: "Arch | Sound AUR Packages"
-  community.general.pacman:
+  kewlfft.aur.aur: 
+    use: "{{ packages.arch.aur.executable }}"
+    extra_args: "--builddir /var/cache/{{ packages.arch.aur.executable }}"
     name: 
       - pwvucontrol
     state: latest
     update_cache: true
-    executable: "{{ packages.arch.aur.executable }}"
-    extra_args: "--builddir /var/cache/{{ packages.arch.aur.executable }}"
   when: 
     - packages.arch.aur.enabled
     - settings.hardware.sound 
