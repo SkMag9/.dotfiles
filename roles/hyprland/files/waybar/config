@@ -12,6 +12,7 @@
     "power-profiles-daemon"
   ],
   "modules-right": [
+    "wlr/taskbar",
     "bluetooth",
     "wireplumber",
     "backlight",
@@ -166,6 +167,18 @@
     },
     "tooltip": true,
     "tooltip-format": "Power Profile: {profile}"
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-theme": "",
+    "icon-size": 18,
+    "on-click": "activate",
+    "tooltip": true,
+    "tooltip-format": "{app_id}/{name}/{title}",
+    "ignore-list": [
+      "kitty",
+      "brave-browser"
+    ]
   },
   "wireplumber": {
     "format": "[{icon} {volume}%]",

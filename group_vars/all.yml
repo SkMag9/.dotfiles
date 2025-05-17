@@ -1,9 +1,10 @@
 ---
 default_roles:
   - common
-  - custom
   - yay # For Arch AUR
+  - custom
   - brave
+  - discord
   - firefox
   - hyprland
   # - iac

@@ -1,0 +1,9 @@
+---
+- name: "Discord | Arch | Install Packages"
+  become: true
+  community.general.pacman:
+    name: 
+      - discord
+    state: latest
+    update_cache: true
+
