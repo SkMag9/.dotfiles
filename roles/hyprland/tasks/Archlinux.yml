@@ -26,6 +26,14 @@
       - greetd-regreet
       - ttf-roboto-mono-nerd
       - hyprpaper
+      - hyprcursor
     state: latest
     update_cache: true
+
+- name: "Hyprland | Arch | Install Cursors"
+  ansible.builtin.unarchive:
+    src: "https://github.com/catppuccin/cursors/releases/download/v2.0.0/catppuccin-mocha-dark-cursors.zip"
+    remote_src: true
+    dest: "{{ ansible_user_dir }}/.local/share/icons"
+    mode: "0755"
 

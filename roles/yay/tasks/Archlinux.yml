@@ -11,23 +11,32 @@
 - name: "Arch | Create aur_builder User"
   become: true
   ansible.builtin.user:
-    name: aur_builder
+    name: "{{ packages.arch.aur.user }}"
     create_home: yes
     group: wheel
 
-- name: "Arch | Allow aur_builder to run pacman without password"
+- name: "Arch | Allow {{ packages.arch.aur.user }} to run pacman without password"
   become: true
   ansible.builtin.lineinfile:
-    path: /etc/sudoers.d/11-install-aur_builder
-    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    path: "/etc/sudoers.d/11-install-{{ packages.arch.aur.user }}"
+    line: "{{ packages.arch.aur.user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman"
     create: yes
     mode: "0644"
     validate: 'visudo -cf %s'
 
 - name: "Arch | Install yay"
   become: true
-  become_user: aur_builder
+  become_user: "{{ packages.arch.aur.user }}"
   kewlfft.aur.aur:
     name: yay
     use: makepkg
     state: present
+
+- name: "Arch | Create yay build directory"
+  become: true
+  ansible.builtin.file:
+    path: /var/cache/yay
+    state: directory
+    owner: "{{ packages.arch.aur.user }}"
+    mode: "0755"
+
