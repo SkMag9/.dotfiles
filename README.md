@@ -6,6 +6,8 @@ Installation is designed for the Fedora custom installation with Fedora Everythi
 
 If the device is a laptop make sure to connect it via ethernet or USB tethering. The WiFi firmware might have to be installed separately, including the ``NetworkManager-wifi`` package.
 
+Connecting to WiFi sometimes fails with the default ``nmcli device wifi connect <SSID> password "password"`` command. A workaround for me was to use ``nmcli device wifi connect <SSID> --ask`` and input the password in the interactive mode.
+
 For default installation:
 
 ```shell
