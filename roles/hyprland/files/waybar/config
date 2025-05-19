@@ -14,6 +14,7 @@
   "modules-right": [
     "wlr/taskbar",
     "bluetooth",
+    "network",
     "wireplumber",
     "backlight",
     "battery",
@@ -157,6 +158,30 @@
     "tooltip": true,
     "tooltip-format-activated": "Idle Inhibitor: {status}",
     "tooltip-format-deactivated": "Idle Inhibitor: {status}"
+  },
+  "network": {
+    "format": "[{icon}]",
+    "format-ethernet": "[{icon}]",
+    "format-wifi": "[{icon}]",
+    "format-disconnected": "[{icon}]",
+    "format-icons": {
+      "default": [],
+      "ethernet": [],
+      "wifi": [
+        "\udb82\udd2f", 
+        "\udb82\udd1f", 
+        "\udb82\udd22", 
+        "\udb82\udd25",
+        "\udb82\udd28"
+      ],
+      "disconnected": []
+    },
+    "on-click": "nm-connection-editor",
+    "tooltip": true,
+    "tooltip-format": "",
+    "tooltip-format-ethernet": "LAN:\t{ifname}\t{ipaddr}",
+    "tooltip-format-wifi": "WiFi:\t{ifname}\t{essid}\t{ipaddr}",
+    "tooltip-format-disconnected": "Network Disconnected"
   },
   "power-profiles-daemon": {
     "format": "[{icon}]",

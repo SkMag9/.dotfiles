@@ -27,6 +27,7 @@
       - ttf-roboto-mono-nerd
       - hyprpaper
       - hyprcursor
+      - nm-connection-editor
     state: latest
     update_cache: true
 
