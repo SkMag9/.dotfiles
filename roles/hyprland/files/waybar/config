@@ -99,7 +99,7 @@
     "format-icons": ["\udb81\udc25"],
     "tooltip": true,
     "tooltip-format": "Power Options",
-    "on-click": "rofi -show p -modi p:rofi-power-menu"
+    "on-click": "rofi -show p -modi p:rofi-power-menu -theme powermenu.rasi"
   },
   "hyprland/workspaces": {
     "all-outputs": true,
@@ -171,7 +171,7 @@
       "\udb81\udd80", 
       "\udb81\udd7e"
     ],
-    "format-muted": "\udb81\udf5f",
+    "format-muted": "[\udb81\udf5f]",
     "on-click": "pwvucontrol",
     "scroll-step": 5.0,
     "tooltip": true,
