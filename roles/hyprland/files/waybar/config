@@ -166,7 +166,7 @@
     "format-disconnected": "[{icon}]",
     "format-icons": {
       "default": [],
-      "ethernet": [],
+      "ethernet": ["\udb81\udef3"],
       "wifi": [
         "\udb82\udd2f", 
         "\udb82\udd1f", 
@@ -174,13 +174,13 @@
         "\udb82\udd25",
         "\udb82\udd28"
       ],
-      "disconnected": []
+      "disconnected": ["\udb83\udc9b"]
     },
     "on-click": "nm-connection-editor",
     "tooltip": true,
     "tooltip-format": "",
-    "tooltip-format-ethernet": "LAN:\t{ifname}\t{ipaddr}",
-    "tooltip-format-wifi": "WiFi:\t{ifname}\t{essid}\t{ipaddr}",
+    "tooltip-format-ethernet": "LAN:\t{ifname}\t{ipaddr}/{cidr}",
+    "tooltip-format-wifi": "WiFi:\t{ifname}\t{essid}\t{ipaddr}/{cidr}",
     "tooltip-format-disconnected": "Network Disconnected"
   },
   "power-profiles-daemon": {
@@ -199,15 +199,21 @@
     "icon-size": 18,
     "on-click": "activate",
     "tooltip": true,
-    "tooltip-format": "{app_id}/{name}/{title}",
+    "tooltip-format": "{app_id}",
     "ignore-list": [
       "kitty",
-      "brave-browser"
+      "brave-browser",
+      "nm-connection-editor"
     ]
   },
   "wireplumber": {
     "format": "[{icon} {volume}%]",
-    "format-icons": ["\udb81\udd7f", "\udb81\udd80", "\udb81\udd80", "\udb81\udd7e"],
+    "format-icons": [
+      "\udb81\udd7f", 
+      "\udb81\udd80", 
+      "\udb81\udd80", 
+      "\udb81\udd7e"
+    ],
     "format-muted": "\udb81\udf5f",
     "on-click": "pwvucontrol",
     "scroll-step": 5.0,

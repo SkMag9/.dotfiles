@@ -97,6 +97,17 @@ window#waybar.battery-critical {
   color: @overlay1;
 }
 
+/* Network */
+#network.disabled,
+#network.disconnected {
+  color: @overlay1;
+}
+
+#network.ethernet,
+#network.wifi {
+  color: @blue;
+}
+
 /* Power Profiles Daemon */
 #power-profiles-daemon.power-saver {
   color: @green;
