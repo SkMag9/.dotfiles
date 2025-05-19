@@ -66,4 +66,7 @@ alias v="nvim"
 alias vd="cd $HOME/.dotfiles && v"
 
 # Shell Integrations
-eval "$(fzf --zsh)"
+# Arch
+# eval "$(fzf --zsh)"
+# Debian
+source /usr/share/doc/fzf/examples/key-bindings.zsh
