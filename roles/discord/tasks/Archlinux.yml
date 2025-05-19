@@ -1,9 +1,7 @@
 ---
 - name: "Discord | Arch | Install Packages"
   become: true
-  community.general.pacman:
+  community.general.flatpak:
     name: 
-      - discord
+      - com.discordapp.Discord
     state: latest
-    update_cache: true
-

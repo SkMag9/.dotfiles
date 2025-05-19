@@ -23,6 +23,7 @@
       - fastfetch
       - file
       - firewalld
+      - flatpak
       - gzip
       - jq
       - man-db

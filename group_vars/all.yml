@@ -4,7 +4,7 @@ default_roles:
   - yay # For Arch AUR
   - custom
   # - brave
-  # - discord
+  - discord
   # - firefox
   - hyprland
   # - iac
@@ -41,6 +41,8 @@ packages:
       user: aur_builder
       packages: 
         - package: catppuccin-gtk-theme-mocha
+  flatpak:
+    - package: ""
   rpm:
     - package: curl
   go:
