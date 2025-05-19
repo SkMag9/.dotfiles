@@ -1,4 +1,4 @@
 @theme "catppuccin-default"
 configuration {
-  font: "RobotoMono Nerd Font Propo 20";
+  font: "RobotoMono Nerd Font Propo 14";
 }

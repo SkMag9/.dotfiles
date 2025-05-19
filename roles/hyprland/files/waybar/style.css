@@ -80,13 +80,10 @@ window#waybar.battery-critical {
 }
 
 /* Custom/Power-Menu */
-#custom-power_menu {
+#custom-powermenu {
   color: @red;
 }
 
-.custom-power_menu_item {
-  color: @text;
-}
 
 /* Idle Inhibitor */
 #idle_inhibitor.activated {

@@ -18,7 +18,7 @@
     "wireplumber",
     "backlight",
     "battery",
-    "group/group-power"
+    "custom/powermenu"
   ],
   
   // Module Config
@@ -94,55 +94,12 @@
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
     "format-alt": "{:%Y-%m-%d}"
   },
-  "custom/lock": {
-    "format": "[{icon}]",
-    "format-icons": ["\udb80\udf3e"],
-    "tooltip": true,
-    "tooltip-format": "Lock Screen",
-    "on-click": "loginctl lock-session"
-  },
-  "custom/power_menu": {
+  "custom/powermenu": {
     "format": "[{icon}]",
     "format-icons": ["\udb81\udc25"],
     "tooltip": true,
-    "tooltip-format": "Power Options"
-  },
-  "custom/poweroff": {
-    "format": "[{icon}]",
-    "format-icons": ["\udb81\udc25"],
-    "tooltip": true,
-    "tooltip-format": "Power Off",
-    "on-click": "systemctl poweroff"
-  },
-  "custom/reboot": {
-    "format": "[{icon}]",
-    "format-icons": ["\udb81\udf09"],
-    "tooltip": true,
-    "tooltip-format": "reboot",
-    "on-click": "systemctl reboot"
-  },
-  "custom/quit": {
-    "format": "[{icon}]",
-    "format-icons": ["\udb80\udf43"],
-    "tooltip": true,
-    "tooltip-format": "Quit Hyprland",
-    "on-click": "hyprctl dispatch exit"
-  },
-  "group/group-power": {
-    "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 500,
-      "transition-left-to-right": false,
-      "children-class": "custom-power_menu_item",
-      "click-to-reveal": true
-    },
-    "modules": [
-      "custom/power_menu", // Leader
-      "custom/quit",
-      "custom/lock",
-      "custom/reboot",
-      "custom/poweroff"
-    ]
+    "tooltip-format": "Power Options",
+    "on-click": "rofi -show p -modi p:rofi-power-menu"
   },
   "hyprland/workspaces": {
     "all-outputs": true,

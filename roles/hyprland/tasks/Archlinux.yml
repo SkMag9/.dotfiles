@@ -7,7 +7,7 @@
       - kitty
       - dolphin
       - waybar
-      - rofi
+      - rofi-wayland
       - swaync
       - pipewire
       - wireplumber
@@ -30,6 +30,16 @@
       - nm-connection-editor
     state: latest
     update_cache: true
+
+- name: "Hyprland | Arch | Install AUR Packages"
+  become: true
+  become_user: "{{ packages.arch.aur.user }}"
+  kewlfft.aur.aur:
+    use: "{{ packages.arch.aur.executable }}"
+    extra_args: "/var/cache/{{ packages.arch.aur.executable }}"
+    name: 
+      - rofi-power-menu
+  when: packages.arch.aur.enabled
 
 - name: "Hyprland | Arch | Install Cursors"
   ansible.builtin.unarchive:
