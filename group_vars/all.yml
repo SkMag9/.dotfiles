@@ -3,15 +3,15 @@ default_roles:
   - common
   - yay # For Arch AUR
   - custom
-  #- brave
-  #- discord
-  #- firefox
+  # - brave
+  # - discord
+  # - firefox
   - hyprland
   # - iac
-  #- nvim
-  #- nvim_ext # Includes config and packages needed for it
+  # - nvim
+  # - nvim_ext # Includes config and packages needed for it
   # - tmux
-  #- zsh
+  # - zsh
 
 settings:
   locale:
