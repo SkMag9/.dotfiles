@@ -22,9 +22,6 @@
       tags:
         - always
 
-  roles:
-    - common
-
   tasks:
     - name: Include Roles
       ansible.builtin.include_role:

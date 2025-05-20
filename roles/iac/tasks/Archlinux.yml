@@ -1,0 +1,11 @@
+---
+- name: "IaC | Arch | Install Packages"
+  become: true
+  community.general.pacman:
+    name:
+      - helm
+      - kubectl
+      - opentofu
+      - terraform
+    state: latest
+    update_cache: true

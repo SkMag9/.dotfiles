@@ -3,15 +3,14 @@ default_roles:
   - common
   - yay # For Arch AUR
   - custom
-  # - brave
-  - discord
-  # - firefox
+  - brave
+  - firefox
   - hyprland
-  # - iac
-  # - nvim
-  # - nvim_ext # Includes config and packages needed for it
-  # - tmux
-  # - zsh
+  - iac
+  - nvim
+  - nvim_ext # Includes config and packages needed for it
+  - tmux
+  - zsh
 
 settings:
   locale:
@@ -46,6 +45,7 @@ packages:
         - package: catppuccin-gtk-theme-mocha
   flatpak:
     - package: org.signal.Signal
+    - package: com.discordapp.Discord
   rpm:
     - package: curl
   go:

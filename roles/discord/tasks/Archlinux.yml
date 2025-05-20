@@ -1,7 +1,0 @@
----
-- name: "Discord | Arch | Install Packages"
-  become: true
-  community.general.flatpak:
-    name: 
-      - com.discordapp.Discord
-    state: latest

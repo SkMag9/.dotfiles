@@ -1,0 +1,8 @@
+---
+- name: "tmux | Arch | Install Packages"
+  become: true
+  community.general.pacman:
+    name:
+      - tmux
+    state: latest
+    update_cache: true
