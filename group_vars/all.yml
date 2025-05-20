@@ -21,10 +21,13 @@ settings:
     font: "ter-132b"
   hostname: "skmag-arch"
   hardware:
-    fingerprint_reader: true
-    sound: true
     accelerometer: true
     bluetooth: true
+    fingerprint_reader: true
+    sound: true
+  laptop: 
+    is_laptop: true
+    no_suspend_on_lid_closed: true
   
 packages:
   apt:
@@ -42,7 +45,7 @@ packages:
       packages: 
         - package: catppuccin-gtk-theme-mocha
   flatpak:
-    - package: ""
+    - package: org.signal.Signal
   rpm:
     - package: curl
   go:

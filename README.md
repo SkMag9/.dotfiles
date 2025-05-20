@@ -29,7 +29,6 @@ For customized installation:
 - Set the correct monitor in ``roles/hyprland/files/monitors.conf``
 - Default Keyboard Layout is de_CH
 
-
 ## ToDo
 
 - [ ] Screen shot utility
@@ -41,10 +40,10 @@ For customized installation:
 - [x] Lock Screen
 - [x] Idle
 - [x] Finalize Waybar Config
-- [ ] Fingerprint Unlock
+- [x] Fingerprint Unlock
 - [ ] Greetd Permissions
-- [ ] Rofi Power Menu
+- [x] Rofi Power Menu
 - [x] Rofi Theme
-- [ ] Fingerprint Issue after closing laptop lid
+- [x] Fingerprint Issue after closing laptop lid
 - [ ] System behaviour on power button and laptop lid
 - [x] Check WebRC

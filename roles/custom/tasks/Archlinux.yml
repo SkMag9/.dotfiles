@@ -22,3 +22,14 @@
     label: "{{ item.package }}"
   loop: "{{ packages.arch.aur.packages }}"
   when: packages.arch.aur.enabled
+
+- name: "Custom | Arch | Install Custom Flatpaks"
+  become: true
+  community.general.flatpak:
+    name: "{{ item.package }}"
+    state: latest
+  loop_control:
+    label: "{{ item.package }}"
+  loop: "{{ packages.flatpak }}"
+
+
