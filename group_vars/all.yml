@@ -13,20 +13,18 @@ default_roles:
   - zsh
 
 settings:
+  hostname: "skmag-arch"
   locale:
     lang: "en_GB.UTF-8"
   vconsole:
-    keymap: "de_CH-latin1"
     font: "ter-132b"
-  hostname: "skmag-arch"
+    keymap: "de_CH-latin1"
   hardware:
     accelerometer: true
     bluetooth: true
     fingerprint_reader: true
     sound: true
-  laptop: 
-    is_laptop: true
-    no_suspend_on_lid_closed: true
+
   
 packages:
   apt:
