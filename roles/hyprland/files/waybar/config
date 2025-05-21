@@ -159,7 +159,9 @@
     "tooltip-format": "{app_id}",
     "ignore-list": [
       "kitty",
+      "blueman-manager",
       "brave-browser",
+      "org.kde.dolphin",
       "nm-connection-editor"
     ]
   },
