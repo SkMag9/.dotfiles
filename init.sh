@@ -38,6 +38,10 @@ flag_conf_nvim="false"
 flag_conf_tmux="false"
 flag_conf_zsh="false"
 
+function usage_exit() {
+  echo "Hello"
+}
+
 while true; do
   case "$1" in
     -a | --inst-conf-all)
@@ -179,6 +183,8 @@ while true; do
       ;;
   esac
 done
+
+
 
 ###############################
 # Functions

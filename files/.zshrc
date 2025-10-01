@@ -65,8 +65,14 @@ alias v="nvim"
 
 alias vd="cd $HOME/.dotfiles && v"
 
+
+
 # Shell Integrations
 # Arch
 # eval "$(fzf --zsh)"
 # Debian
 source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+# Path
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/go/bin
