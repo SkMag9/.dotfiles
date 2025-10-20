@@ -76,4 +76,5 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 # Path
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/.krew/bin
 export GOPATH=$HOME/go
