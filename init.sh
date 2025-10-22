@@ -412,13 +412,16 @@ function conf_zsh() {
   rm -rf "$HOME/.zshrc"
   rm -rf "$HOME/.histfile"
   rm -rf "$HOME/.config/zsh"
+  rm -rf "$HOME/.work-aliases"
 
   mkdir -p "$HOME/.config/"
+  touch "$HOME/.dotfiles/files/.work-aliases"
 
   ln -sf "$HOME/.dotfiles/files/.zshrc" "$HOME/.zshrc"
   ln -sf "$HOME/.dotfiles/files/.config/zsh/" "$HOME/.config/"
+  ln -sf "$HOME/.dotfiles/files/.work-aliases" "$HOME/.work-aliases"
 
-  chmod +x $HOME/.config/zsh/motd.sh
+  chmod +x "$HOME/.config/zsh/motd.sh"
 
   sudo chsh -s "$(which zsh)" skmag9
 }

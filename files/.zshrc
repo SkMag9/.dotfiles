@@ -65,7 +65,7 @@ alias v="nvim"
 
 alias vd="cd $HOME/.dotfiles && v"
 
-
+source "$HOME/.work-aliases"
 
 # Shell Integrations
 # Arch
