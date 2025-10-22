@@ -419,7 +419,6 @@ function conf_zsh() {
 
   ln -sf "$HOME/.dotfiles/files/.zshrc" "$HOME/.zshrc"
   ln -sf "$HOME/.dotfiles/files/.config/zsh/" "$HOME/.config/"
-  ln -sf "$HOME/.dotfiles/files/.work-aliases" "$HOME/.work-aliases"
 
   chmod +x "$HOME/.config/zsh/motd.sh"
 
