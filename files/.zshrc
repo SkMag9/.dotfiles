@@ -78,3 +78,6 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/.krew/bin
 export GOPATH=$HOME/go
+
+# ENV
+export SUDO_EDITOR="/usr/bin/nvim"
