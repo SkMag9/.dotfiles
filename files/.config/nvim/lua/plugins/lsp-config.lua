@@ -43,32 +43,31 @@ return {
     config = function()
       -- Global Language Server Setup
       local capabilities = require("cmp_nvim_lsp").default_capabilities() -- completion stuff
-      local lspconfig = require("lspconfig")
 
       -- Language Specific Setup
       --- Ansible
-      lspconfig.ansiblels.setup({ capabilities = capabilities })
+      vim.lsp.config("ansiblels", { capabilities = capabilities })
 
       --- Bash
-      lspconfig.bashls.setup({ capabilities = capabilities })
+      vim.lsp.config("bashls", { capabilities = capabilities })
 
       --- Go
-      lspconfig.gopls.setup({ capabilities = capabilities })
+      vim.lsp.config("gopls", { capabilities = capabilities })
 
       --- Lua
-      lspconfig.lua_ls.setup({ capabilities = capabilities })
+      vim.lsp.config("lua_ls", { capabilities = capabilities })
 
       --- Python
-      lspconfig.pyright.setup({ capabilities = capabilities })
+      vim.lsp.config("pyright", { capabilities = capabilities })
 
       --- Terraform
-      lspconfig.terraformls.setup({ capabilities = capabilities })
+      vim.lsp.config("terraformls", { capabilities = capabilities })
 
       --- WebDev
-      lspconfig.html.setup({ capabilities = capabilities })
-      lspconfig.cssls.setup({ capabilities = capabilities })
-      lspconfig.ts_ls.setup({ capabilities = capabilities })
-      lspconfig.eslint.setup({ capabilities = capabilities })
+      vim.lsp.config("html", { capabilities = capabilities })
+      vim.lsp.config("cssls", { capabilities = capabilities })
+      vim.lsp.config("ts_ls", { capabilities = capabilities })
+      vim.lsp.config("eslint", { capabilities = capabilities })
 
       -- Keymaps
       --- On Startup
