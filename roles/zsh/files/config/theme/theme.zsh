@@ -33,10 +33,10 @@ GIT_FG_MODIFIED="black"
 # OS_ICON="\uf327"
 
 # Arch Linux
-# OS_ICON="\uf303"
+OS_ICON="\uf303"
 
 # Debian
-OS_ICON="\uf306"
+# OS_ICON="\uf306"
 
 # Ubuntu
 # OS_ICON="\uf31b"
